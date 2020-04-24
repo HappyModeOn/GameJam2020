@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class NPCController : MonoBehaviour
 {
+    public int danceID = 0;
     public bool isEnemy = false;
     public Animator anim;
     private EnemyFloating ef;
@@ -19,6 +20,15 @@ public class NPCController : MonoBehaviour
     {
         ef = transform.root.GetComponent<EnemyFloating>();
         rb = gameObject.GetComponent<Rigidbody>();
+        if (danceID != -1)
+        {
+            anim.SetInteger("DanceID", danceID);
+        }
+        else
+        {
+            anim.SetInteger("DanceID", Random.Range(0,3));
+        }
+      
     }
 
     private void OnTriggerEnter(Collider other)
@@ -47,7 +57,7 @@ public class NPCController : MonoBehaviour
             }
 
         }
-        if (currentHP <= 0)
+        if (currentHP <= 0 && isDeath == false)
         {
             transform.parent = null;
             rb.AddForce(knockbackPower);
@@ -69,17 +79,15 @@ public class NPCController : MonoBehaviour
         //rb.MovePosition(Vector3.forward * speed * Time.deltaTime);
         if (transform.position.y < 2 )
         {
-            if (isDeath)
-            {
-                anim.SetBool("Death", true);
-            }
-            else
-            {
-                anim.SetBool("OnWater", true);
-            }
-          
+            anim.SetBool("OnWater", true);
+            transform.position += Vector3.left * Time.deltaTime * speed;
+           // transform.position = new Vector3(transform.position.x, 1, transform.position.z);
         }
-       
+        if (isDeath)
+        {
+            anim.SetBool("Death", true);
+            return;
+        }
         if (ef.reachTarget)
         {
             if (isMelee)
@@ -88,11 +96,12 @@ public class NPCController : MonoBehaviour
                 {
                     if (transform.position.z > 2)
                     {
-                        transform.position += Vector3.back * Time.deltaTime * (speed - Random.Range(0, speed - 1));
+                        transform.position += Vector3.back * Time.deltaTime * speed;
                         anim.SetBool("Move", true);
                     }
                     else
                     {
+                        anim.SetInteger("DanceID", -1);
                         anim.SetBool("Move", false);
                         if (currentAttackCD > 0)
                         {

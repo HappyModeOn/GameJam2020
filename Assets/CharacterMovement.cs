@@ -21,7 +21,6 @@ public class CharacterMovement : MonoBehaviour
         {
             if (other.transform.root.name != transform.root.name)
             {
-
                 if (other.GetComponent<HeavyObject>() != null)
                 {
                     anim.SetTrigger("HeavyHurt");
@@ -88,9 +87,22 @@ public class CharacterMovement : MonoBehaviour
             if (moveDirection != Vector3.zero)
             {
                 anim.SetBool("Move", true);
+                if (moveDirection.x < 0)
+                {
+                    transform.localScale = new Vector3(-1, 1, 1);
+                }
+                else if (moveDirection.x > 0)
+                {
+                    transform.localScale = new Vector3(1, 1, 1);
+                }
             }
             else
             {
+                if (transform.position.y < 2f)
+                {
+                    moveDirection.x = -0.15f;
+                }
+                  
                 anim.SetBool("Move", false);
                 anim.SetInteger("DanceID", Random.Range(0, 3));
             }
@@ -101,6 +113,13 @@ public class CharacterMovement : MonoBehaviour
                 moveDirection.y = jumpSpeed;
             }
 
+            if (transform.position.y < 2f)
+            {
+                if (moveDirection.x > 0)
+                {
+                    moveDirection.x = moveDirection.x / 2;
+                }
+            }
             if (Input.GetButton("Fire1"))
             {
                 if (hitbox.activeInHierarchy == false)
