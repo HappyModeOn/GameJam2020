@@ -92,6 +92,7 @@ public class CharacterMovement : MonoBehaviour
             else
             {
                 anim.SetBool("Move", false);
+                anim.SetInteger("DanceID", Random.Range(0, 3));
             }
             moveDirection *= speed;
 
