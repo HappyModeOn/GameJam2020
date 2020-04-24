@@ -13,7 +13,7 @@ public class EnemyFloating : MonoBehaviour
     public Transform PlayerFloating;
     public float speed = 3;
 
-    public List<EnemyController> ecs;
+    public List<NPCController> npcs;
     bool isBreak = false;
     public float delayAfterBreak = 3;
     // Start is called before the first frame update
@@ -21,15 +21,19 @@ public class EnemyFloating : MonoBehaviour
     {
         if (other.name == "HitBox")
         {
-            currentHP -= 1;
+            if (other.transform.root.name != transform.root.name)
+            {
+                currentHP -= 1;
+            }
+               
         }
         if (currentHP <= 0)
         {
-            for (int i = 0; i < ecs.Count; i++)
+            for (int i = 0; i < npcs.Count; i++)
             {
-                if (ecs[i].isDeath == false)
+                if (npcs[i].isDeath == false)
                 {
-                    ecs[i].currentHP = -1;
+                    npcs[i].currentHP = -1;
                 }
             }
             isBreak = true;

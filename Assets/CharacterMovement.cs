@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
 {
+    public Animator anim;
     CharacterController characterController;
 
     public float speed = 6.0f;
@@ -13,19 +14,85 @@ public class CharacterMovement : MonoBehaviour
     private Vector3 moveDirection = Vector3.zero;
     public GameObject hitbox;
 
+    private void OnTriggerEnter(Collider other)
+    {
+       
+        if (other.name == "HitBox")
+        {
+            if (other.transform.root.name != transform.root.name)
+            {
+
+                if (other.GetComponent<HeavyObject>() != null)
+                {
+                    anim.SetTrigger("HeavyHurt");
+                    if (other.transform.position.z > transform.position.z)
+                    {
+                        moveDirection = new Vector3(0, 0.2f, -0.5f);
+                    }
+                    else
+                    {
+                        moveDirection = new Vector3(0, 0.2f, 0.5f);
+
+                    }
+                }
+                else
+                {
+                    anim.SetTrigger("Hurt");
+                    if (other.transform.position.z > transform.position.z)
+                    {
+                        moveDirection = new Vector3(0, 0.1f, -0.5f);
+                    }
+                    else
+                    {
+                        moveDirection = new Vector3(0, 0.1f, 0.5f);
+
+                    }
+                }
+             
+               currentHurtTime = hurtTime;
+            }
+        }
+    }
+
+    public float hurtTime = 3;
+    private float currentHurtTime = 0;
     void Start()
     {
         characterController = GetComponent<CharacterController>();
+        anim.GetComponent<Animator>();
     }
 
     void Update()
     {
+        if (transform.position.y < 2f)
+        {
+            anim.SetBool("OnWater", true);
+        }
+        else
+        {
+            anim.SetBool("OnWater", false);
+        }
+        if (currentHurtTime > 0)
+        {
+            currentHurtTime -= Time.deltaTime;
+            characterController.Move(moveDirection * Time.deltaTime);
+            return;
+        }
+
         if (characterController.isGrounded)
         {
             // We are grounded, so recalculate
             // move direction directly from axes
-
             moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
+
+            if (moveDirection != Vector3.zero)
+            {
+                anim.SetBool("Move", true);
+            }
+            else
+            {
+                anim.SetBool("Move", false);
+            }
             moveDirection *= speed;
 
             if (Input.GetButton("Jump"))
@@ -37,6 +104,7 @@ public class CharacterMovement : MonoBehaviour
             {
                 if (hitbox.activeInHierarchy == false)
                 {
+                    anim.SetTrigger("Attack");
                     hitbox.SetActive(true);
                 }
             }
