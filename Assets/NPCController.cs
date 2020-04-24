@@ -101,6 +101,7 @@ public class NPCController : MonoBehaviour
                     }
                     else
                     {
+                        anim.SetInteger("DanceID", -1);
                         anim.SetBool("Move", false);
                         if (currentAttackCD > 0)
                         {
