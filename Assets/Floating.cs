@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyFloating : MonoBehaviour
+public class Floating : MonoBehaviour
 {
-
+    public bool isPlayerFloating = false;
+    public Floating topFloating;
+    public Floating botFloating;
     public int hp = 10;
     public int currentHP = 10;
 
@@ -36,14 +38,18 @@ public class EnemyFloating : MonoBehaviour
             isBreak = true;
             transform.GetChild(0).gameObject.SetActive(false);
             GetComponent<Rigidbody>().isKinematic = false;
-            GetComponent<Rigidbody>().AddForce(Random.Range(-700, 700), 700, 0);
-            GetComponent<Rigidbody>().useGravity = true;
+          //  GetComponent<Rigidbody>().AddForce(Random.Range(-700, 700), 700, 0);
+          //  GetComponent<Rigidbody>().useGravity = true;
         }
     }
     // Update is called once per frame
     void Update()
     {
-        CheckHP();
+        if (isPlayerFloating == false)// Hack
+        {
+            CheckHP();
+        }
+        
 
         if (isBreak)
         {
@@ -57,19 +63,34 @@ public class EnemyFloating : MonoBehaviour
             }
              
         }
-        if (reachTarget == false)
+        if (isPlayerFloating)
         {
-            float dist = transform.position.x - PlayerFloating.position.x;
-            if (Mathf.Abs(dist) < 0.1f)
+            if (topFloating.reachTarget)
             {
                 reachTarget = true;
-                transform.position = new Vector3(PlayerFloating.position.x, transform.position.y, transform.position.z);
             }
-            else
+            if (botFloating.reachTarget)
             {
-                transform.Translate(Vector3.right * speed * Time.deltaTime);
+                reachTarget = true;
             }
         }
+        else
+        {
+            if (reachTarget == false)
+            {
+                float dist = transform.position.x - PlayerFloating.position.x;
+                if (Mathf.Abs(dist) < 0.1f)
+                {
+                    reachTarget = true;
+                    transform.position = new Vector3(PlayerFloating.position.x, transform.position.y, transform.position.z);
+                }
+                else
+                {
+                    transform.Translate(Vector3.right * speed * Time.deltaTime);
+                }
+            }
+        }
+       
         
        
     }
@@ -77,6 +98,7 @@ public class EnemyFloating : MonoBehaviour
     public enum floatingPosition
     {
         Top,
+        Middle,
         Bottom
     }
 }

@@ -16,8 +16,8 @@ TagManager:
   - EnemyWall
   - PlayerWall
   - Player
-  - Enemy
-  - EnemyFloating
+  - NPC
+  - Drowner
   - HitBox
   - HitBoxEnemy
   - 

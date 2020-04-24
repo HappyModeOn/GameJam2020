@@ -55,21 +55,25 @@ public class CharacterMovement : MonoBehaviour
 
     public float hurtTime = 3;
     private float currentHurtTime = 0;
+    public bool currentLifeSave = false;
     void Start()
     {
         characterController = GetComponent<CharacterController>();
         anim.GetComponent<Animator>();
     }
 
+    public GameObject saverTrigger;
     void Update()
     {
         if (transform.position.y < 2f)
         {
             anim.SetBool("OnWater", true);
+            saverTrigger.SetActive(true);
         }
         else
         {
             anim.SetBool("OnWater", false);
+            saverTrigger.SetActive(false);
         }
         if (currentHurtTime > 0)
         {
@@ -100,6 +104,7 @@ public class CharacterMovement : MonoBehaviour
             {
                 if (transform.position.y < 2f)
                 {
+                    
                     moveDirection.x = -0.15f;
                 }
                   
@@ -117,7 +122,15 @@ public class CharacterMovement : MonoBehaviour
             {
                 if (moveDirection.x > 0)
                 {
-                    moveDirection.x = moveDirection.x / 2;
+                  
+                    if (currentLifeSave)
+                    {
+                        moveDirection.x = moveDirection.x / 4;
+                    }
+                    else
+                    {
+                        moveDirection.x = moveDirection.x / 2;
+                    }
                 }
             }
             if (Input.GetButton("Fire1"))
