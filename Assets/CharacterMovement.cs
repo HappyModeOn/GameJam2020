@@ -11,6 +11,7 @@ public class CharacterMovement : MonoBehaviour
     public float gravity = 20.0f;
 
     private Vector3 moveDirection = Vector3.zero;
+    public GameObject hitbox;
 
     void Start()
     {
@@ -30,6 +31,14 @@ public class CharacterMovement : MonoBehaviour
             if (Input.GetButton("Jump"))
             {
                 moveDirection.y = jumpSpeed;
+            }
+
+            if (Input.GetButton("Fire1"))
+            {
+                if (hitbox.activeInHierarchy == false)
+                {
+                    hitbox.SetActive(true);
+                }
             }
         }
 

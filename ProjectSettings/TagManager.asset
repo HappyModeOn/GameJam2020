@@ -13,13 +13,13 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - EnemyWall
+  - PlayerWall
+  - Player
+  - Enemy
+  - EnemyFloating
+  - HitBox
+  - HitBoxEnemy
   - 
   - 
   - 
