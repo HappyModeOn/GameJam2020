@@ -36,7 +36,6 @@ public class Floating : MonoBehaviour
         if (currentHP <= 0)
         {
             isBreak = true;
-            transform.GetChild(0).gameObject.SetActive(false);
             GetComponent<Rigidbody>().isKinematic = false;
           //  GetComponent<Rigidbody>().AddForce(Random.Range(-700, 700), 700, 0);
           //  GetComponent<Rigidbody>().useGravity = true;

@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class NPCController : MonoBehaviour
 {
-    public Material mat;
+    int duty = 100;
+    public MeshRenderer mr;
     public int danceID = 0;
     public bool isEnemy = false;
     public Animator anim;
@@ -17,24 +18,31 @@ public class NPCController : MonoBehaviour
     public int currentHP = 3;
 
     private Rigidbody rb;
-    void Start()
-    {
-        currentFloating = transform.root.GetComponent<Floating>();
 
-        /*
+
+    void SetColorCup()
+    {
         if (currentFloating.lenNumber == Floating.floatingPosition.Top)
         {
-            mat.color = Color.red;
+            mr.material.SetColor("_Color", Color.red);
         }
         else if (currentFloating.lenNumber == Floating.floatingPosition.Middle)
         {
-            mat.color = Color.red;
+            mr.material.SetColor("_Color", Color.yellow);
         }
         else if (currentFloating.lenNumber == Floating.floatingPosition.Bottom)
         {
-            mat.color = Color.green;
+            mr.material.SetColor("_Color", Color.green);
         }
-        */
+    }
+    void Start()
+    {
+        currentFloating = transform.root.GetComponent<Floating>();
+        SetColorCup();
+
+
+
+
         rb = gameObject.GetComponent<Rigidbody>();
         if (danceID != -1)
         {
@@ -47,6 +55,28 @@ public class NPCController : MonoBehaviour
       
     }
 
+
+    void CheckDuty()
+    {
+        if (currentFloating.topFloating.reachTarget && currentFloating.botFloating.reachTarget)
+        {
+            duty = Random.Range(0, 100);
+        }
+        else
+        {
+            if (currentFloating.topFloating.reachTarget || currentFloating.botFloating.reachTarget)
+            {
+                if (currentFloating.topFloating.reachTarget)
+                {
+                    duty = 0;
+                }
+                else
+                {
+                    duty = 100;
+                }
+            }
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -68,6 +98,9 @@ public class NPCController : MonoBehaviour
             {
                 currentFloating.npcs.Add(this);
             }
+
+            CheckDuty();
+            SetColorCup();
             ///hack careful for multiplayer
             GameObject.Find("Player").GetComponent<CharacterMovement>().currentLifeSave = false;
             if (danceID != -1)
@@ -126,6 +159,7 @@ public class NPCController : MonoBehaviour
         transform.parent = null;
         isDeath = true;
         rb.AddForce(knockbackPower);
+        currentFloating.npcs.Remove(this);
         anim.SetBool("Death", true);
     }
     // Update is called once per frame
@@ -192,23 +226,68 @@ public class NPCController : MonoBehaviour
                 }
                 else if (currentFloating.lenNumber == Floating.floatingPosition.Middle)
                 {
-                    if (currentFloating.topFloating.reachTarget)
+
+                    if (duty < 50)
                     {
-                        rb.AddForce(Vector3.back * speed);
+                        if (transform.localPosition.z > -0.4f)
+                        {
+                            rb.AddForce(Vector3.back * speed);
+                            anim.SetBool("Move", true);
+
+                        }
+                        else
+                        {
+
+                            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, -0.4f);
+                            rb.velocity = Vector3.zero;
+                            anim.SetInteger("DanceID", -1);
+                            anim.SetBool("Move", false);
+                            if (currentAttackCD > 0)
+                            {
+                                currentAttackCD -= Time.deltaTime;
+                            }
+                            else
+                            {
+                                CheckDuty();
+                                currentAttackCD = attackCD;
+                                anim.SetTrigger("Attack");
+                                hitBox.SetActive(true);
+                            }
+                        }
+                          
                     }
-                    else if (currentFloating.botFloating.reachTarget)
+                    else
                     {
-                        rb.AddForce(Vector3.forward * speed);
-                    }
-                    //transform.position += Vector3.forward * Time.deltaTime * speed;
-                    anim.SetBool("Move", true);
+                        if (transform.localPosition.z < 0.4f)
+                        {
+                            rb.AddForce(Vector3.forward * speed);
+                            anim.SetBool("Move", true);
+                        }
+                        else
+                        {
+                            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0.4f);
+                            rb.velocity = Vector3.zero;
+                            anim.SetInteger("DanceID", -1);
+                            anim.SetBool("Move", false);
+                            if (currentAttackCD > 0)
+                            {
+                                currentAttackCD -= Time.deltaTime;
+                            }
+                            else
+                            {
+                                CheckDuty();
+                                currentAttackCD = attackCD;
+                                anim.SetTrigger("Attack");
+                                hitBox.SetActive(true);
+                            }
+                        }
+                    }          
                 }
                 else if (currentFloating.lenNumber == Floating.floatingPosition.Bottom)
                 {
                     if (transform.localPosition.z < 0.45f)
                     {
                         rb.AddForce(Vector3.forward * speed);
-                        //transform.position += Vector3.back * Time.deltaTime * speed;
                         anim.SetBool("Move", true);
                     }
                     else
