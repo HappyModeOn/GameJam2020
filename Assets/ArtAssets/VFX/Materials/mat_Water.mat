@@ -47,22 +47,22 @@ Material:
     - _Float9: 0.07
     - _FoamAmount: 0.08
     - _FoamBlend: 1
-    - _FoamRange: 0.3
+    - _FoamRange: -0.08
     - _FoamShoreBrightness: 1
-    - _FoamSurfOpacity: 0.3
+    - _FoamSurfOpacity: 0.1
     - _FoamTilling: 0.1
     - _FoamTurbulence: 0.02
-    - _GrossAmount: 0.7
+    - _GrossAmount: 0.75
     - _GrossBrightness: 2
     - _GrossTilling: 4
     - _ShoreBrightness: 3
     - _ShoreWidth: 0.25
     - _WaveHeight: 0.5
     - _WaveSpeed: 0.5
-    - _WaveTilling: 1.5
+    - _WaveTilling: -2
     - __dirty: 0
     m_Colors:
-    - _ColorDepth: {r: 0, g: 0.28861514, b: 0.6226415, a: 1}
-    - _ColorSurface: {r: 0.24528302, g: 0.8266462, b: 0.9811321, a: 0.78431374}
+    - _ColorDepth: {r: 0, g: 0.21757895, b: 0.7169812, a: 1}
+    - _ColorSurface: {r: 0.17880027, g: 0.9245283, b: 0.8957133, a: 0.78431374}
     - _GrossPanner: {r: 0.13, g: -0.1, b: 0.1, a: -0.33}
     - _SpecColor: {r: 1, g: 1, b: 1, a: 1}
