@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: mat_Water
+  m_Shader: {fileID: 4800000, guid: 92a8a24602bf31743a8231d199bdc06a, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 0
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 8e6aa5e51b41cb846b5d36933aca8efe, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample2:
+        m_Texture: {fileID: 2800000, guid: 8e6aa5e51b41cb846b5d36933aca8efe, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample3:
+        m_Texture: {fileID: 2800000, guid: 8e6aa5e51b41cb846b5d36933aca8efe, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _DepthBlend: 0.4
+    - _DepthRange: 0.6
+    - _Float1: 4.2
+    - _Float4: 8.7
+    - _Float5: 0
+    - _Float6: 1
+    - _Float7: 2.59
+    - _Float8: 0
+    - _Float9: 0.07
+    - _FoamAmount: 0.08
+    - _FoamBlend: 1
+    - _FoamRange: 0.3
+    - _FoamShoreBrightness: 1
+    - _FoamSurfOpacity: 0.3
+    - _FoamTilling: 0.1
+    - _FoamTurbulence: 0.02
+    - _GrossAmount: 0.7
+    - _GrossBrightness: 2
+    - _GrossTilling: 4
+    - _ShoreBrightness: 3
+    - _ShoreWidth: 0.25
+    - _WaveHeight: 0.5
+    - _WaveSpeed: 0.5
+    - _WaveTilling: 1.5
+    - __dirty: 0
+    m_Colors:
+    - _ColorDepth: {r: 0, g: 0.28861514, b: 0.6226415, a: 1}
+    - _ColorSurface: {r: 0.24528302, g: 0.8266462, b: 0.9811321, a: 0.78431374}
+    - _GrossPanner: {r: 0.13, g: -0.1, b: 0.1, a: -0.33}
+    - _SpecColor: {r: 1, g: 1, b: 1, a: 1}
