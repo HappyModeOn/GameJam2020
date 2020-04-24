@@ -492,7 +492,12 @@ MonoBehaviour:
   lenNumber: 0
   PlayerFloating: {fileID: 925312492}
   speed: 3
-  npcs: []
+  npcs:
+  - {fileID: 1061926581}
+  - {fileID: 8198980153601441631}
+  - {fileID: 651759269171642329}
+  - {fileID: 3818718623925659237}
+  - {fileID: 1245744642}
   delayAfterBreak: 5
   reachTarget: 0
 --- !u!54 &138820535
@@ -1780,6 +1785,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1061926581 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9064820728230098328, guid: 2283b34fdd93da64492218ba7aa4c029,
+    type: 3}
+  m_PrefabInstance: {fileID: 9064820728690911324}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25049a2b06384a943951ba49afbacf8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1087276916
 GameObject:
   m_ObjectHideFlags: 0
@@ -2025,6 +2042,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25049a2b06384a943951ba49afbacf8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  danceID: -1
   isEnemy: 1
   anim: {fileID: 1458743624}
   speed: 3
@@ -2564,6 +2582,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25049a2b06384a943951ba49afbacf8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  danceID: 1
   isEnemy: 1
   anim: {fileID: 198487249}
   speed: 3
@@ -2716,6 +2735,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25049a2b06384a943951ba49afbacf8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  danceID: 2
   isEnemy: 1
   anim: {fileID: 1827223186}
   speed: 3
@@ -2803,6 +2823,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25049a2b06384a943951ba49afbacf8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  danceID: 0
   isEnemy: 1
   anim: {fileID: 646062715}
   speed: 3
@@ -2864,6 +2885,11 @@ PrefabInstance:
         type: 3}
       propertyPath: isEnemy
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9064820728230098328, guid: 2283b34fdd93da64492218ba7aa4c029,
+        type: 3}
+      propertyPath: danceID
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 9064820728230098332, guid: 2283b34fdd93da64492218ba7aa4c029,
         type: 3}

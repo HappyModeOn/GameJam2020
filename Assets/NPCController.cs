@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class NPCController : MonoBehaviour
 {
+    public int danceID = 0;
     public bool isEnemy = false;
     public Animator anim;
     private EnemyFloating ef;
@@ -19,6 +20,15 @@ public class NPCController : MonoBehaviour
     {
         ef = transform.root.GetComponent<EnemyFloating>();
         rb = gameObject.GetComponent<Rigidbody>();
+        if (danceID != -1)
+        {
+            anim.SetInteger("DanceID", danceID);
+        }
+        else
+        {
+            anim.SetInteger("DanceID", Random.Range(0,3));
+        }
+      
     }
 
     private void OnTriggerEnter(Collider other)
