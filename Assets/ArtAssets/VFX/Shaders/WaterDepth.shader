@@ -38,16 +38,18 @@
 	}
 	SubShader
 	{
-		Tags { "Queue"="Transparent" "IgnoreProjector"="True" "RenderType"="Transparent" }
+		Tags { "Queue"="Transparent-1" "IgnoreProjector"="True" "RenderType"="Transparent" }
 		Blend SrcAlpha OneMinusSrcAlpha
 		Cull Back
 		Lighting Off
+		ZWrite On
 
 		Pass
 		{
 			CGPROGRAM
 			#pragma vertex vert
 			#pragma fragment frag
+			#pragma multi_compile_fog
 			
 			#include "UnityCG.cginc"
 
@@ -64,6 +66,7 @@
 				float4 scrPos     : TEXCOORD1;
 				float4 uvPanner   : TEXCOORD2;
 				float2 wavePanner : TEXCOORD3;
+				UNITY_FOG_COORDS(4)
 			};
 
 			uniform sampler2D _CameraDepthTexture;
@@ -88,6 +91,7 @@
 				o.uvPanner = float4(o.uv.xy * .25 + timePanner.xy, o.uv.xy * .5 + timePanner.zw);
 
 				o.scrPos = ComputeScreenPos(o.vertex);
+				UNITY_TRANSFER_FOG(o,o.vertex);
 				return o;
 			}
 
@@ -125,6 +129,7 @@
 
 				fixed4 waterCol = lerp(_ColorDepth, _ColorSurface, depthCtrl);
 				fixed4 col = fixed4(waterCol.rgb + shore + gross + foamSurface, waterCol.a);
+				UNITY_APPLY_FOG(i.fogCoord, col);
 				return col;
 			}
 			ENDCG

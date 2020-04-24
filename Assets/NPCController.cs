@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class NPCController : MonoBehaviour
 {
+    public int danceID = 0;
     public bool isEnemy = false;
     public Animator anim;
     private EnemyFloating ef;
@@ -19,6 +20,15 @@ public class NPCController : MonoBehaviour
     {
         ef = transform.root.GetComponent<EnemyFloating>();
         rb = gameObject.GetComponent<Rigidbody>();
+        if (danceID != -1)
+        {
+            anim.SetInteger("DanceID", danceID);
+        }
+        else
+        {
+            anim.SetInteger("DanceID", Random.Range(0,3));
+        }
+      
     }
 
     private void OnTriggerEnter(Collider other)
@@ -49,12 +59,18 @@ public class NPCController : MonoBehaviour
         }
         if (currentHP <= 0 && isDeath == false)
         {
-            transform.parent = null;
-            rb.AddForce(knockbackPower);
-            anim.SetTrigger("Impact");
-            isDeath = true;
+            Bounce();
         }
 
+    }
+
+
+    public void Bounce()
+    {
+        anim.SetTrigger("Impact");
+        transform.parent = null;
+        isDeath = true;
+        rb.AddForce(knockbackPower);
     }
     // Update is called once per frame
 
@@ -67,30 +83,34 @@ public class NPCController : MonoBehaviour
     void Update()
     {
         //rb.MovePosition(Vector3.forward * speed * Time.deltaTime);
-        if (transform.position.y < 2 )
-        {
-            anim.SetBool("OnWater", true);
-            transform.position += Vector3.left * Time.deltaTime * speed;
-           // transform.position = new Vector3(transform.position.x, 1, transform.position.z);
-        }
+        
         if (isDeath)
         {
             anim.SetBool("Death", true);
+            if (transform.position.y < 2f)
+            {
+                anim.SetBool("OnWater", true);
+                transform.position += Vector3.left * Time.deltaTime * speed/2;
+            }
             return;
         }
-        if (ef.reachTarget)
+        if (ef.reachTarget && isDeath == false)
         {
             if (isMelee)
             {
                 if (ef.lenNumber == EnemyFloating.floatingPosition.Top)
                 {
-                    if (transform.position.z > 2)
+                    if (transform.localPosition.z > -0.45f)
                     {
-                        transform.position += Vector3.back * Time.deltaTime * speed;
+                        rb.AddForce(Vector3.back * speed);
+                        //transform.position += Vector3.back * Time.deltaTime * speed;
                         anim.SetBool("Move", true);
                     }
                     else
                     {
+                        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, -0.45f);
+                        rb.velocity = Vector3.zero;
+                        anim.SetInteger("DanceID", -1);
                         anim.SetBool("Move", false);
                         if (currentAttackCD > 0)
                         {
@@ -106,7 +126,7 @@ public class NPCController : MonoBehaviour
                 }
                 else if (ef.lenNumber == EnemyFloating.floatingPosition.Bottom)
                 {
-                    transform.position += Vector3.forward * Time.deltaTime * speed;
+                    //transform.position += Vector3.forward * Time.deltaTime * speed;
                     anim.SetBool("Move", true);
                 }
             }

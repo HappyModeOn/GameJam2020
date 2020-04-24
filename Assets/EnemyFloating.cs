@@ -17,38 +17,34 @@ public class EnemyFloating : MonoBehaviour
     bool isBreak = false;
     public float delayAfterBreak = 3;
     // Start is called before the first frame update
-    private void OnTriggerEnter(Collider other)
+
+    public bool reachTarget = false;
+
+    public void CheckHP()
     {
-        if (other.name == "HitBox")
+        currentHP = npcs.Count;
+        for (int i = 0; i < npcs.Count; i++)
         {
-            if (other.transform.root.name != transform.root.name)
+            if (npcs[i].isDeath == true)
             {
                 currentHP -= 1;
             }
-               
+
         }
         if (currentHP <= 0)
         {
-            for (int i = 0; i < npcs.Count; i++)
-            {
-                if (npcs[i].isDeath == false)
-                {
-                    npcs[i].currentHP = -1;
-                }
-            }
             isBreak = true;
             transform.GetChild(0).gameObject.SetActive(false);
             GetComponent<Rigidbody>().isKinematic = false;
-            GetComponent<Rigidbody>().AddForce(Random.Range(-300, 300), Random.Range(500, 1500) , 0);
+            GetComponent<Rigidbody>().AddForce(Random.Range(-700, 700), 700, 0);
             GetComponent<Rigidbody>().useGravity = true;
-            GetComponent<Rigidbody>().AddExplosionForce(500, transform.position, 3);
         }
     }
-
-    public bool reachTarget = false;
     // Update is called once per frame
     void Update()
     {
+        CheckHP();
+
         if (isBreak)
         {
             if (delayAfterBreak > 0)
