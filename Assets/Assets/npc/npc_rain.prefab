@@ -519,7 +519,6 @@ Transform:
   - {fileID: 8161657838294366760}
   - {fileID: 3855805196724497893}
   - {fileID: 1487675853435396115}
-  - {fileID: 223670597943785107}
   m_Father: {fileID: 4973705350024057370}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -781,6 +780,7 @@ Transform:
   - {fileID: 6538615704375516769}
   - {fileID: 6279680740339334414}
   - {fileID: 6544993655943791309}
+  - {fileID: 223670597943785107}
   m_Father: {fileID: 1021425019566168331}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1019,13 +1019,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6202504304741560376}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.881, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.689, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 346144783446796190}
-  m_Father: {fileID: 1021425019566168331}
-  m_RootOrder: 6
+  m_Father: {fileID: 7741961452309991658}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6844469392758769132
 GameObject:
@@ -1119,7 +1119,7 @@ GameObject:
   - component: {fileID: 4973705350024057370}
   - component: {fileID: 878699857438721975}
   m_Layer: 0
-  m_Name: npc_ rain
+  m_Name: npc_rain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
