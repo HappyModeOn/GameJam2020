@@ -47,7 +47,7 @@ public class NPCController : MonoBehaviour
             }
 
         }
-        if (currentHP <= 0)
+        if (currentHP <= 0 && isDeath == false)
         {
             transform.parent = null;
             rb.AddForce(knockbackPower);
@@ -69,17 +69,15 @@ public class NPCController : MonoBehaviour
         //rb.MovePosition(Vector3.forward * speed * Time.deltaTime);
         if (transform.position.y < 2 )
         {
-            if (isDeath)
-            {
-                anim.SetBool("Death", true);
-            }
-            else
-            {
-                anim.SetBool("OnWater", true);
-            }
-          
+            anim.SetBool("OnWater", true);
+            transform.position += Vector3.left * Time.deltaTime * speed;
+           // transform.position = new Vector3(transform.position.x, 1, transform.position.z);
         }
-       
+        if (isDeath)
+        {
+            anim.SetBool("Death", true);
+            return;
+        }
         if (ef.reachTarget)
         {
             if (isMelee)
@@ -88,7 +86,7 @@ public class NPCController : MonoBehaviour
                 {
                     if (transform.position.z > 2)
                     {
-                        transform.position += Vector3.back * Time.deltaTime * (speed - Random.Range(0, speed - 1));
+                        transform.position += Vector3.back * Time.deltaTime * speed;
                         anim.SetBool("Move", true);
                     }
                     else
