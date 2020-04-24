@@ -52,7 +52,7 @@ public class CharacterMovement : MonoBehaviour
             }
         }
     }
-
+    public MeshRenderer meshRenderer;
     public float hurtTime = 3;
     private float currentHurtTime = 0;
     public bool currentLifeSave = false;
@@ -60,6 +60,9 @@ public class CharacterMovement : MonoBehaviour
     {
         characterController = GetComponent<CharacterController>();
         anim.GetComponent<Animator>();
+
+        meshRenderer.material.SetColor("_Color", Color.yellow);
+
     }
 
     public GameObject saverTrigger;

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class NPCController : MonoBehaviour
 {
+    public Material mat;
     public int danceID = 0;
     public bool isEnemy = false;
     public Animator anim;
@@ -19,6 +20,21 @@ public class NPCController : MonoBehaviour
     void Start()
     {
         currentFloating = transform.root.GetComponent<Floating>();
+
+        /*
+        if (currentFloating.lenNumber == Floating.floatingPosition.Top)
+        {
+            mat.color = Color.red;
+        }
+        else if (currentFloating.lenNumber == Floating.floatingPosition.Middle)
+        {
+            mat.color = Color.red;
+        }
+        else if (currentFloating.lenNumber == Floating.floatingPosition.Bottom)
+        {
+            mat.color = Color.green;
+        }
+        */
         rb = gameObject.GetComponent<Rigidbody>();
         if (danceID != -1)
         {
