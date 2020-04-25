@@ -35,7 +35,7 @@ public class ThrowingObject : MonoBehaviour
 
     private void Update()
     {
-        if (transform.position.y < 2)
+        if (transform.position.y < 1.5f)
         {
             if (waterVFX != null)
             {
