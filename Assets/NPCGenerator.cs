@@ -34,13 +34,17 @@ public class NPCGenerator : MonoBehaviour
         return clone;
 
     }
-    public GameObject AddUniqueNPC(Vector3 pos, int npcID = -1)
+    public GameObject AddUniqueNPC(Vector3 pos, int npcID = -1, bool randomPos = false)
     {
         if (npcID == -1)
         {
             npcID = Random.Range(0, npcBoss.Length);
         }
-       // pos += new Vector3(Random.Range(-1.5f, 1.5f), 1f, Random.Range(-1.5f, 1.5f));
+        if (randomPos)
+        {
+            pos += new Vector3(Random.Range(-1.5f, 1.5f), 1f, Random.Range(-1.5f, 1.5f));
+        }
+        
         GameObject clone = Instantiate(npcBoss[npcID], pos, Quaternion.identity) as GameObject;
 
 

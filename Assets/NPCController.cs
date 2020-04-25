@@ -236,6 +236,7 @@ public class NPCController : MonoBehaviour
                     currentHP -= 1;
                     anim.SetTrigger("Hurt");
                 }
+                other.gameObject.SetActive(false);
             }
             
         }
