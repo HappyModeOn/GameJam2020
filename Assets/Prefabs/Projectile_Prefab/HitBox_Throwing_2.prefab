@@ -61,8 +61,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f474578fadf4d154f91ff31f6ed7442d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundVFX: {fileID: 0}
-  waterVFX: {fileID: 0}
+  groundVFX: {fileID: 8833028086283660080, guid: fe0cbd17887a44b4ca6e3609325af33d,
+    type: 3}
+  waterVFX: {fileID: 4540043437645000060, guid: 2f468ccfd78ce374999d209a46ae4098,
+    type: 3}
   damge: 2
   directionZ: -1
   minMaxX: {x: -50, y: 50}
