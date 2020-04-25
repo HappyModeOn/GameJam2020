@@ -263,7 +263,7 @@ public class NPCController : MonoBehaviour
 
             if (transform.parent == null)
             {
-                transform.position += Vector3.left * Time.deltaTime * speed / 5;
+                transform.position += Vector3.left * Time.deltaTime * speed / 2;
             }
             else
             {
