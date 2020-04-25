@@ -60,6 +60,7 @@ public class Floating : MonoBehaviour
 
     IEnumerator DelayPlayerBGM()
     {
+       
         //yield on a new YieldInstruction that waits for 5 seconds.
         yield return new WaitForSeconds(7);
 
@@ -67,6 +68,9 @@ public class Floating : MonoBehaviour
         {
             PlayerFloating.GetComponent<AudioSource>().Play();
         }
+        yield return new WaitForSeconds(2);
+        topFloating.gameObject.SetActive(true);
+        introPanel.SetActive(false);
     }
    
 public GameObject questPanel;
