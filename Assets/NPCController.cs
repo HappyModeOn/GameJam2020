@@ -228,11 +228,11 @@ public class NPCController : MonoBehaviour
                     currentHP -= 5;
                     if (currentFloating.lenNumber == Floating.floatingPosition.Top)
                     {
-                        rb.AddForce(0, 25, 150);
+                        rb.AddForce(0, 25, 50);
                     }
                     else if (currentFloating.lenNumber == Floating.floatingPosition.Bottom)
                     {
-                        rb.AddForce(0, 25, -150);
+                        rb.AddForce(0, 25, -50);
                     }
                 }
                 else
@@ -255,11 +255,11 @@ public class NPCController : MonoBehaviour
                     anim.SetTrigger("HeavyHurt");
                     if (currentFloating.lenNumber == Floating.floatingPosition.Top)
                     {
-                        rb.AddForce(0, 25, 150);
+                        rb.AddForce(0, 25, 50);
                     }
                     else if (currentFloating.lenNumber == Floating.floatingPosition.Bottom)
                     {
-                        rb.AddForce(0, 25, -150);
+                        rb.AddForce(0, 25, -50);
                     }
                 }
                 else
@@ -386,12 +386,11 @@ public class NPCController : MonoBehaviour
             Death();
         }
 
-            if (currentFloating.isPlayerFloating)
+        if (currentFloating.isPlayerFloating)
         {
-            if (currentFloating.topFloating.reachTarget == false && currentFloating.botFloating.reachTarget == false)
+            if (currentFloating.topFloating.reachTarget == false && currentFloating.botFloating.reachTarget == false || duty == DockingDirection.None)
             {
                 CheckDuty();
-                return;
             }
             if (isMelee)
             {

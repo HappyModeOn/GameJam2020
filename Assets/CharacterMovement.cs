@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
 {
+    public AudioClip atkSFX;
     public Animator anim;
     CharacterController characterController;
 
@@ -51,6 +52,7 @@ public class CharacterMovement : MonoBehaviour
     }
 
     public GameObject saverTrigger;
+
     void Update()
     {
         if (transform.position.y < 2f)
@@ -127,6 +129,7 @@ public class CharacterMovement : MonoBehaviour
                 {
                     anim.SetTrigger("Attack");
                     hitbox.SetActive(true);
+                    GetComponent<AudioSource>().PlayOneShot(atkSFX);
                 }
             }
         }
@@ -138,6 +141,13 @@ public class CharacterMovement : MonoBehaviour
 
         // Move the controller
         characterController.Move(moveDirection * Time.deltaTime);
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+
+      
     }
 
     

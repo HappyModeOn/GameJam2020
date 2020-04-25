@@ -138,7 +138,7 @@ public GameObject questPanel;
         {
             for (int i = 0; i < numberOfNPC; i++)
             {
-                if (i % 2 == 0)
+                if (i % 3 == 0)
                 {
                     GameObject newNPC = npcG.AddMeleeNPC(transform.position);
                     //GameObject newNPC = npcG.AddNPC(transform.position, 1);
