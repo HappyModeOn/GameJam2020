@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ThrowingObject : MonoBehaviour
 {
+    public GameObject groundVFX;
+    public GameObject waterVFX;
     public int damge = 1;
     [HideInInspector]
     public float directionZ = 0;
@@ -28,5 +30,32 @@ public class ThrowingObject : MonoBehaviour
 
         }
 
+    }
+
+
+    private void Update()
+    {
+        if (transform.position.y < 2)
+        {
+            if (waterVFX != null)
+            {
+                if (waterVFX.activeInHierarchy == false)
+                {
+                    waterVFX.SetActive(true);
+                }
+            }
+        }
+    }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (groundVFX != null)
+        {
+            if (groundVFX.activeInHierarchy == false)
+            {
+                groundVFX.SetActive(true);
+            }
+        }
     }
 }

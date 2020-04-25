@@ -103,6 +103,10 @@ public class CharacterMovement : MonoBehaviour
 
             if (Input.GetButton("Jump"))
             {
+                if (anim.GetBool("OnWater"))
+                { 
+                    anim.SetBool("OnWater", false);
+                }
                 moveDirection.y = jumpSpeed;
             }
 

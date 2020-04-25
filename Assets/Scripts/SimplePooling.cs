@@ -8,6 +8,14 @@ public class SimplePooling : MonoBehaviour {
     public GameObject[] pool;
     public int poolID = 0;
 
+    public void Start()
+    {
+        pool = new GameObject[transform.childCount];
+        for (int i = 0;i < transform.childCount;i++)
+        {
+            pool[i] = transform.GetChild(0).gameObject;
+        }
+    }
     public void Clear()
     {
         for (int i = 0; i < pool.Length; i++)

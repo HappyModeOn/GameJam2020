@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+
+
 public enum DockingDirection
 {
     None,
@@ -13,6 +15,10 @@ public enum DockingDirection
 public enum ThrowerType
 {
     Beer,
+    Plate,
+    Flipflop,
+    Mic,
+    Redcup,
     Speaker
 }
 public class NPCController : MonoBehaviour
@@ -58,7 +64,27 @@ public class NPCController : MonoBehaviour
         {
             sp = GameObject.Find("BeerPool").GetComponent<SimplePooling>();
         }
-       
+        else if (projectileType == ThrowerType.Flipflop)
+        {
+            sp = GameObject.Find("FlipflopPool").GetComponent<SimplePooling>();
+        }
+        if (projectileType == ThrowerType.Mic)
+        {
+            sp = GameObject.Find("MicPool").GetComponent<SimplePooling>();
+        }
+        if (projectileType == ThrowerType.Plate)
+        {
+            sp = GameObject.Find("PlatePool").GetComponent<SimplePooling>();
+        }
+        if (projectileType == ThrowerType.Redcup)
+        {
+            sp = GameObject.Find("RedcupPool").GetComponent<SimplePooling>();
+        }
+        if (projectileType == ThrowerType.Speaker)
+        {
+            sp = GameObject.Find("SpeakerPool").GetComponent<SimplePooling>();
+        }
+
 
 
 

@@ -47,16 +47,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25049a2b06384a943951ba49afbacf8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  duty: 0
   mr: {fileID: 6489143485752343781}
   danceID: -1
   isEnemy: 1
   anim: {fileID: 5469718186785499309}
+  currentFloating: {fileID: 0}
   speed: 7
   isMelee: 1
   projectileType: 0
   sp: {fileID: 0}
   hp: 5
   currentHP: 1
+  speedUpDown: 0.25
+  distanceUpDown: 0.5
   knockbackPower: {x: 300, y: 300, z: 0}
   isDeath: 0
   attackCD: 3
@@ -134,8 +138,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 2, y: 1, z: 2}
+  m_Center: {x: 0, y: -0.5, z: 0}
 --- !u!114 &6358367082395080770
 MonoBehaviour:
   m_ObjectHideFlags: 0
