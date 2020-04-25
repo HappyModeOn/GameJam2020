@@ -20,12 +20,13 @@ public class SimplePooling : MonoBehaviour {
         }
         poolID = 0;
     }
-    public GameObject Show(Vector3 position)
+    public GameObject Show(Vector3 position, string tag)
     {
-        
         pool[poolID].transform.position = position;
 
+        pool[poolID].tag = tag;
         pool[poolID].SetActive(true);
+        
         poolID++;
 
         if (poolID >= pool.Length)

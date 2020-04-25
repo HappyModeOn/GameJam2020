@@ -159,6 +159,26 @@ public class NPCController : MonoBehaviour
             }
 
         }
+        else if (other.GetComponent<ThrowingObject>() != null)
+        {
+            if (currentFloating.name != other.tag)
+            {
+                if (other.GetComponent<ThrowingObject>().damge > 1)
+                {
+                    anim.SetTrigger("HeavyHurt");
+                    currentHP -= 3;
+                }
+                else
+                {
+                    currentHP -= 1;
+                    anim.SetTrigger("Hurt");
+                }
+            }
+            
+        }
+        else
+        {
+        }
         if (currentHP <= 0 && isDeath == false)
         {
             Bounce();
@@ -335,15 +355,13 @@ public class NPCController : MonoBehaviour
                 {
                     currentAttackCD = attackCD;
                     anim.SetTrigger("Attack");
-                    GameObject trb = sp.Show(transform.position);
+                    GameObject trb = sp.Show(transform.position, currentFloating.name);
                     if (currentFloating.lenNumber == Floating.floatingPosition.Top)
                     {
                         trb.GetComponent<ThrowingObject>().directionZ = -1;
-                      //  trb.AddForce(Random.Range(-300, 300), Random.Range(500, 1000), Random.Range(-150, -300));
                     }
                     else if (currentFloating.lenNumber == Floating.floatingPosition.Middle)
                     {
-                        //trb.GetComponent<ThrowingObject>().directionZ = 0;
                     }
                     else if (currentFloating.lenNumber == Floating.floatingPosition.Bottom)
                     {

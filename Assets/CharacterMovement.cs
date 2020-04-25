@@ -16,39 +16,38 @@ public class CharacterMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-       
+
         if (other.name == "HitBox")
         {
             if (other.transform.root.name != transform.root.name)
             {
-                if (other.GetComponent<HeavyObject>() != null)
-                {
-                    anim.SetTrigger("HeavyHurt");
-                    if (other.transform.position.z > transform.position.z)
-                    {
-                        moveDirection = new Vector3(0, 0.2f, -0.5f);
-                    }
-                    else
-                    {
-                        moveDirection = new Vector3(0, 0.2f, 0.5f);
 
-                    }
+                anim.SetTrigger("Hurt");
+                if (other.transform.position.z > transform.position.z)
+                {
+                    moveDirection = new Vector3(0, 0.1f, -0.5f);
                 }
                 else
                 {
-                    anim.SetTrigger("Hurt");
-                    if (other.transform.position.z > transform.position.z)
-                    {
-                        moveDirection = new Vector3(0, 0.1f, -0.5f);
-                    }
-                    else
-                    {
-                        moveDirection = new Vector3(0, 0.1f, 0.5f);
+                    moveDirection = new Vector3(0, 0.1f, 0.5f);
 
-                    }
                 }
-             
-               currentHurtTime = hurtTime;
+                currentHurtTime = hurtTime;
+            }
+        }
+        else if (other.GetComponent<ThrowingObject>() != null)
+        {
+            if (other.GetComponent<ThrowingObject>().damge > 1)
+            {
+                anim.SetTrigger("HeavyHurt");
+                if (other.transform.position.z > transform.position.z)
+                {
+                    moveDirection = new Vector3(0, 0.2f, -0.5f);
+                }
+                else
+                {
+                    moveDirection = new Vector3(0, 0.2f, 0.5f);
+                }
             }
         }
     }

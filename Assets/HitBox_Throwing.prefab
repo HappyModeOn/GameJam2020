@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 956504335143006809}
   - component: {fileID: 956504335143006808}
   - component: {fileID: 956504335143006807}
+  - component: {fileID: 919030016957125604}
   m_Layer: 0
   m_Name: HitBox_Throwing
   m_TagString: Untagged
@@ -60,10 +61,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damge: 1
-  directionZ: 0
+  directionZ: -1
   minMaxX: {x: -150, y: 150}
-  minMaxY: {x: 300, y: 150}
-  minMaxZ: {x: 300, y: 500}
+  minMaxY: {x: 300, y: 350}
+  minMaxZ: {x: 150, y: 200}
 --- !u!54 &956504335143006807
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -80,6 +81,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 48
   m_CollisionDetection: 0
+--- !u!114 &919030016957125604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956504335143006806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5847b2519fb4a1546a941765b4183e06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeTime: 3
 --- !u!1 &956504335554129200
 GameObject:
   m_ObjectHideFlags: 0

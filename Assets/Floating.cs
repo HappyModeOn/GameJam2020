@@ -64,8 +64,8 @@ public class Floating : MonoBehaviour
         numberOfNPC += currentWave % 2;
         for (int i = 0; i < numberOfNPC; i++)
         {
-            GameObject newNPC = npcG.AddNPC(transform.position, Random.Range(0, npcG.npcPrefab.Length));
-           // GameObject newNPC = npcG.AddNPC(transform.position, 1);
+            //GameObject newNPC = npcG.AddNPC(transform.position, Random.Range(0, npcG.npcPrefab.Length));
+           GameObject newNPC = npcG.AddNPC(transform.position, 1);
             newNPC.transform.localScale = Vector3.one;
             newNPC.transform.parent = transform;
             npcs.Add(newNPC.GetComponent<NPCController>());

@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy_Floating_T
+  - Enemy_Floating_B
+  - Floating_Player
   layers:
   - Default
   - TransparentFX
