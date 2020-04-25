@@ -4899,6 +4899,8 @@ MonoBehaviour:
   - {fileID: 2862554015250306424, guid: 3774ecf6fe0e36b44a8bebf30527a064, type: 3}
   npcMelee:
   - {fileID: 6358367080873702982, guid: 2283b34fdd93da64492218ba7aa4c029, type: 3}
+  - {fileID: 2862554015250306424, guid: 4edc3c8290829ef418f3be4b5a57a1d1, type: 3}
+  - {fileID: 2862554015250306424, guid: 46e7ea95b36923c41ae781d9f0a12da9, type: 3}
   npcProjectile:
   - {fileID: 2862554015250306424, guid: 9518e133217738c4d8622dcba5dfdf42, type: 3}
   - {fileID: 2862554015250306424, guid: b64e2dd4f92fb7340aa99f347f2c78f7, type: 3}
@@ -5074,7 +5076,7 @@ PrefabInstance:
     - target: {fileID: 2359443539912756937, guid: 6ac92aa920f0e7442be30e48e620846f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3203888839713714928, guid: 6ac92aa920f0e7442be30e48e620846f,
         type: 3}
@@ -5144,7 +5146,7 @@ PrefabInstance:
     - target: {fileID: 3892081530559049737, guid: 6ac92aa920f0e7442be30e48e620846f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4059638302068955630, guid: 6ac92aa920f0e7442be30e48e620846f,
         type: 3}
