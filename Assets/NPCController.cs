@@ -312,7 +312,7 @@ public class NPCController : MonoBehaviour
 
     public float attackCD = 5;
     private float currentAttackCD = 5;
-    public GameObject hitBox;
+    public GameObject[] hitBox;
     void Update()
     {
         //rb.MovePosition(Vector3.forward * speed * Time.deltaTime);
@@ -413,7 +413,7 @@ public class NPCController : MonoBehaviour
                             CheckDuty();
                             currentAttackCD = attackCD;
                             anim.SetTrigger("Attack");
-                            hitBox.SetActive(true);
+                            hitBox[Random.Range(0, hitBox.Length)].SetActive(true);
                         }
                     }
 
@@ -440,7 +440,7 @@ public class NPCController : MonoBehaviour
                             CheckDuty();
                             currentAttackCD = attackCD;
                             anim.SetTrigger("Attack");
-                            hitBox.SetActive(true);
+                            hitBox[Random.Range(0, hitBox.Length)].SetActive(true);
                         }
                     }
                 }
@@ -499,7 +499,7 @@ public class NPCController : MonoBehaviour
                             {
                                 currentAttackCD = attackCD;
                                 anim.SetTrigger("Attack");
-                                hitBox.SetActive(true);
+                                hitBox[Random.Range(0, hitBox.Length)].SetActive(true);
                             }
                         }
                     }
@@ -524,7 +524,7 @@ public class NPCController : MonoBehaviour
                             {
                                 currentAttackCD = attackCD;
                                 anim.SetTrigger("Attack");
-                                hitBox.SetActive(true);
+                                hitBox[Random.Range(0, hitBox.Length)].SetActive(true);
                             }
                         }
                     }
