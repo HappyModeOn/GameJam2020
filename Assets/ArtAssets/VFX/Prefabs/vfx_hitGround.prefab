@@ -4825,12 +4825,12 @@ GameObject:
   - component: {fileID: 4060151332388599433}
   - component: {fileID: 7073221124144872296}
   m_Layer: 0
-  m_Name: vfx_hit
+  m_Name: vfx_hitGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5586344393460093817
 Transform:
   m_ObjectHideFlags: 0
