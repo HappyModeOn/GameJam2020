@@ -247,7 +247,14 @@ public class NPCController : MonoBehaviour
                 if (other.GetComponent<ThrowingObject>().damge > 1)
                 {
                     anim.SetTrigger("HeavyHurt");
-                   
+                    if (currentFloating.lenNumber == Floating.floatingPosition.Top)
+                    {
+                        rb.AddForce(0, 25, 150);
+                    }
+                    else if (currentFloating.lenNumber == Floating.floatingPosition.Bottom)
+                    {
+                        rb.AddForce(0, 25, -150);
+                    }
                 }
                 else
                 {
