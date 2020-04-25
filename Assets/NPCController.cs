@@ -51,13 +51,9 @@ public class NPCController : MonoBehaviour
         {
             mr.material.SetColor("_Color", Color.red);
         }
-        else if (currentFloating.lenNumber == Floating.floatingPosition.Middle)
+        else
         {
-            mr.material.SetColor("_Color", Color.yellow);
-        }
-        else if (currentFloating.lenNumber == Floating.floatingPosition.Bottom)
-        {
-            mr.material.SetColor("_Color", Color.green);
+            mr.material.SetColor("_Color", Color.blue);
         }
     }
     void Start()
@@ -147,6 +143,10 @@ public class NPCController : MonoBehaviour
     {
         if (other.name == "ReviveZone")
         {
+            if (anim.GetBool("Rescue") == false)
+            {
+                return;
+            }
             GetComponent<AudioSource>().PlayOneShot(savedSFX);
             //hack Must Delay
             transform.parent = other.transform.root;
@@ -176,13 +176,14 @@ public class NPCController : MonoBehaviour
             anim.SetBool("Death", false);
             rb.velocity = Vector3.zero;
             rb.isKinematic = false;
+            anim.SetBool("Rescue", false);
         }
         else if (other.name == "Saver")
         {
             if (other.transform.root.GetComponent<CharacterMovement>().npcOnHand == null)
             {
                 GetComponent<AudioSource>().PlayOneShot(savingSFX);
-                
+                anim.SetBool("Rescue", true);
                 Debug.Log("Got Save");
                 other.transform.root.gameObject.GetComponent<CharacterMovement>().npcOnHand = this;
                 transform.parent = other.transform.root;
@@ -312,6 +313,7 @@ public class NPCController : MonoBehaviour
         {
             if (currentFloating.topFloating.reachTarget == false && currentFloating.botFloating.reachTarget == false)
             {
+                CheckDuty();
                 return;
             }
             if (isMelee)

@@ -67,7 +67,7 @@ MonoBehaviour:
   directionZ: -1
   minMaxX: {x: -50, y: 50}
   minMaxY: {x: 150, y: 250}
-  minMaxZ: {x: 150, y: 175}
+  minMaxZ: {x: 150, y: 200}
 --- !u!54 &956504335143006807
 Rigidbody:
   m_ObjectHideFlags: 0
