@@ -44,17 +44,23 @@ public class Floating : MonoBehaviour
         {
             GetComponent<AudioSource>().Stop();
             isBreak = true;
+            if (PlayerFloating.GetComponent<AudioSource>() != null)
+            {
+                PlayerFloating.GetComponent<AudioSource>().Play();
+            }
+          
             reachTarget = false;
 
             if (currentWave == 1)
             {
                 botFloating.gameObject.SetActive(true);
+                questPanel.SetActive(false);
             }
             currentWave += 1;
         }
     }
-    public AudioClip[] ac;
 
+    public GameObject questPanel;
     void PrepareNewFloating()
     {
         if (isPlayerFloating)
@@ -73,12 +79,8 @@ public class Floating : MonoBehaviour
             newNPC1.transform.parent = transform;
             newNPC1.GetComponent<NPCController>().isEnemy = false;
             npcs.Add(newNPC1.GetComponent<NPCController>());
-
+            questPanel.SetActive(false);
             return;
-        }
-        if (ac.Length > 0)
-        {
-            GetComponent<AudioSource>().clip = ac[Random.Range(0, ac.Length)];
         }
 
 
@@ -119,7 +121,7 @@ public class Floating : MonoBehaviour
         Debug.Log(currentWave + "/ mod 5 >>" + (currentWave %5) + "/ mod 3 >>" + (currentWave % 3));
         if (currentWave % 5 == 0 && lenNumber == floatingPosition.Bottom)
         {
-            GameObject newNPC = npcG.AddUniqueNPC(transform.position);
+            GameObject newNPC = npcG.AddUniqueNPC(transform.position, BossCount);
             //GameObject newNPC = npcG.AddNPC(transform.position, 1);
             newNPC.transform.localScale = Vector3.one;
             newNPC.transform.parent = transform;
