@@ -8,13 +8,15 @@ public class NPCGenerator : MonoBehaviour
     public GameObject[] npcMelee;
     public GameObject[] npcProjectile;
 
+    float rangeOfRandom = 1f;
+
     public GameObject AddMeleeNPC(Vector3 pos, int npcID = -1)
     {
         if (npcID == -1)
         {
             npcID = Random.Range(0, npcMelee.Length);
         }
-        pos += new Vector3(Random.Range(-1.5f, 1.5f), 1f, Random.Range(-1.5f, 1.5f));
+        pos += new Vector3(Random.Range(-rangeOfRandom, rangeOfRandom), 1, Random.Range(-rangeOfRandom, rangeOfRandom));
         GameObject clone = Instantiate(npcMelee[npcID], pos, Quaternion.identity) as GameObject;
 
 
@@ -27,7 +29,7 @@ public class NPCGenerator : MonoBehaviour
         {
             npcID = Random.Range(0, npcProjectile.Length);
         }
-        pos += new Vector3(Random.Range(-1.5f, 1.5f), 1f, Random.Range(-1.5f, 1.5f));
+        pos += new Vector3(Random.Range(-rangeOfRandom, rangeOfRandom), 1, Random.Range(-rangeOfRandom, rangeOfRandom));
         GameObject clone = Instantiate(npcProjectile[npcID], pos, Quaternion.identity) as GameObject;
 
 
@@ -42,7 +44,7 @@ public class NPCGenerator : MonoBehaviour
         }
         if (randomPos)
         {
-            pos += new Vector3(Random.Range(-1.5f, 1.5f), 1f, Random.Range(-1.5f, 1.5f));
+            pos += new Vector3(Random.Range(-rangeOfRandom, rangeOfRandom), 1, Random.Range(-rangeOfRandom, rangeOfRandom));
         }
         
         GameObject clone = Instantiate(npcBoss[npcID], pos, Quaternion.identity) as GameObject;
