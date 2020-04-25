@@ -3450,6 +3450,7 @@ MonoBehaviour:
   questPanel: {fileID: 99355813}
   BossCount: 0
   gameOverPanel: {fileID: 2034894043}
+  introPanel: {fileID: 1285559015}
 --- !u!54 &925312495
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4696,6 +4697,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: -90, y: 90, z: -90}
+--- !u!1 &1285559015 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1326005850, guid: 53b0f2f0221c7dc4ba99c8679af9dc7b,
+    type: 3}
+  m_PrefabInstance: {fileID: 245120412}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1303747201
 GameObject:
   m_ObjectHideFlags: 0

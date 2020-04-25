@@ -148,22 +148,22 @@ public GameObject questPanel;
         {
             for (int i = 0; i < numberOfNPC; i++)
             {
-               // if (i % 3 == 0)
-                //{
+                if (i % 3 == 0)
+                {
                     GameObject newNPC = npcG.AddMeleeNPC(transform.position);
                     //GameObject newNPC = npcG.AddNPC(transform.position, 1);
                     newNPC.transform.localScale = Vector3.one;
                     newNPC.transform.parent = transform;
                     npcs.Add(newNPC.GetComponent<NPCController>());
-                //}
-                //else
-                //{
-                 //   GameObject newNPC = npcG.AddThrowerNPC(transform.position);
-                 //   //GameObject newNPC = npcG.AddNPC(transform.position, 1);
-                 //   newNPC.transform.localScale = Vector3.one;
-                 //   newNPC.transform.parent = transform;
-                 //   npcs.Add(newNPC.GetComponent<NPCController>());
-               // }
+                }
+                else
+                {
+                    GameObject newNPC = npcG.AddThrowerNPC(transform.position);
+                    //GameObject newNPC = npcG.AddNPC(transform.position, 1);
+                    newNPC.transform.localScale = Vector3.one;
+                    newNPC.transform.parent = transform;
+                    npcs.Add(newNPC.GetComponent<NPCController>());
+                }
 
             }
 
@@ -184,6 +184,7 @@ public GameObject questPanel;
         PrepareNewFloating();
     }
    public GameObject gameOverPanel;
+    public GameObject introPanel;
     void Update()
     {
 
@@ -195,6 +196,7 @@ public GameObject questPanel;
             {
                 GetComponent<AudioSource>().Stop();
                 gameOverPanel.SetActive(true);
+                introPanel.SetActive(false);
 
             }
             else
