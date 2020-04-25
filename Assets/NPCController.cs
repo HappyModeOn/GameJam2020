@@ -254,7 +254,7 @@ public class NPCController : MonoBehaviour
     {
         isDeath = true;
         currentFloating.npcs.Remove(this);
-        gameObject.layer = LayerMask.NameToLayer("Drowner");
+        gameObject.layer = LayerMask.NameToLayer("Flyer");
         anim.SetBool("Death", true);
     }
     public void Bounce()
@@ -264,7 +264,7 @@ public class NPCController : MonoBehaviour
         anim.SetTrigger("Impact");
         transform.parent = null;
        
-        rb.AddForce(new Vector3(Random.Range(300, 500), Random.Range(150, 350), Random.Range(-50, 50)));
+        rb.AddForce(new Vector3(Random.Range(300, 500), Random.Range(150, 350), 0));
      
     }
     // Update is called once per frame
@@ -301,6 +301,7 @@ public class NPCController : MonoBehaviour
             {
                 //rb.velocity = Vector3.zero;
                 anim.SetBool("OnWater", true);
+                gameObject.layer = LayerMask.NameToLayer("Drowner");
                 GetComponent<AudioSource>().clip = waterSplashSFX;
                 GetComponent<AudioSource>().Play();
 
