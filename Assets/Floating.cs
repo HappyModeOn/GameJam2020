@@ -114,7 +114,7 @@ public GameObject questPanel;
         numberOfNPC += currentWave % 2;
         
         Debug.Log(currentWave + "/ mod 5 >>" + (currentWave %5) + "/ mod 3 >>" + (currentWave % 3));
-        if (currentWave % 5 == 0 && lenNumber == floatingPosition.Bottom)
+        if (currentWave % 1 == 0 && lenNumber == floatingPosition.Bottom)
         {
             if (BossCount == 3)
             {
@@ -135,12 +135,12 @@ public GameObject questPanel;
                 newNPC.transform.parent = transform;
                 npcs.Add(newNPC.GetComponent<NPCController>());
             }
-          
 
 
-           // visualID = Random.Range(0, visualBoat.Length);
+
+            visualID = Random.Range(0, visualBoat.Length);
+            visualBoat[visualID].SetActive(true);
             GetComponent<AudioSource>().clip = boatSong[BossCount];
-            GetComponent<AudioSource>().clip = bossSong[BossCount];
           
             BossCount++;
 
@@ -153,7 +153,7 @@ public GameObject questPanel;
         {
             for (int i = 0; i < numberOfNPC; i++)
             {
-                if (i % 3 == 0)
+                if (i % 2 == 0)
                 {
                     GameObject newNPC = npcG.AddMeleeNPC(transform.position);
                     //GameObject newNPC = npcG.AddNPC(transform.position, 1);

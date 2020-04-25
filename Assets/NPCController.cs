@@ -19,7 +19,9 @@ public enum ThrowerType
     Flipflop,
     Mic,
     Redcup,
-    Speaker
+    Speaker,
+        Money,
+        Coffin
 }
 public class NPCController : MonoBehaviour
 {
@@ -84,6 +86,14 @@ public class NPCController : MonoBehaviour
         if (projectileType == ThrowerType.Speaker)
         {
             sp = GameObject.Find("SpeakerPool").GetComponent<SimplePooling>();
+        }
+        if (projectileType == ThrowerType.Money)
+        {
+            sp = GameObject.Find("MoneyPool").GetComponent<SimplePooling>();
+        }
+        if (projectileType == ThrowerType.Coffin)
+        {
+            sp = GameObject.Find("CoffinPool").GetComponent<SimplePooling>();
         }
 
 
@@ -210,6 +220,14 @@ public class NPCController : MonoBehaviour
                 {
                     anim.SetTrigger("HeavyHurt");
                     currentHP -= 5;
+                    if (currentFloating.lenNumber == Floating.floatingPosition.Top)
+                    {
+                        rb.AddForce(0, 25, 150);
+                    }
+                    else if (currentFloating.lenNumber == Floating.floatingPosition.Bottom)
+                    {
+                        rb.AddForce(0, 25, -150);
+                    }
                 }
                 else
                 {
@@ -268,8 +286,16 @@ public class NPCController : MonoBehaviour
         Death();
         anim.SetTrigger("Impact");
         transform.parent = null;
-       
-        rb.AddForce(new Vector3(Random.Range(300, 500), Random.Range(150, 200), 0));
+
+        if (isEnemy)
+        {
+            rb.AddForce(new Vector3(Random.Range(300, 500), Random.Range(150, 200), 0));
+        }
+        else
+        {
+            rb.AddForce(new Vector3(Random.Range(-300, -500), Random.Range(150, 200), 0));
+        }
+      
      
     }
     // Update is called once per frame
