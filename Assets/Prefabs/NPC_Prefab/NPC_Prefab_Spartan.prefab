@@ -335,7 +335,7 @@ PrefabInstance:
     - target: {fileID: 6358367080873702970, guid: 2283b34fdd93da64492218ba7aa4c029,
         type: 3}
       propertyPath: attackCD
-      value: 4
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6358367080873702970, guid: 2283b34fdd93da64492218ba7aa4c029,
         type: 3}
@@ -425,7 +425,12 @@ PrefabInstance:
     - target: {fileID: 6358367082395080771, guid: 2283b34fdd93da64492218ba7aa4c029,
         type: 3}
       propertyPath: m_Size.z
-      value: 5
+      value: 3.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 6358367082395080771, guid: 2283b34fdd93da64492218ba7aa4c029,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 5.31
       objectReference: {fileID: 0}
     - target: {fileID: 6358367082395080780, guid: 2283b34fdd93da64492218ba7aa4c029,
         type: 3}
