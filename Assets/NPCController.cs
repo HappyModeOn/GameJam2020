@@ -353,7 +353,7 @@ public class NPCController : MonoBehaviour
             {
                 if (duty == DockingDirection.Bot)
                 {
-                    if (transform.localPosition.z > -0.4f)
+                    if (transform.localPosition.z > -1.6f)
                     {
                         rb.AddForce(Vector3.back * speed);
                         anim.SetBool("Move", true);
@@ -362,7 +362,7 @@ public class NPCController : MonoBehaviour
                     else
                     {
 
-                        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, -0.4f);
+                        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, -1.6f);
                         rb.velocity = Vector3.zero;
                         anim.SetInteger("DanceID", -1);
                         anim.SetBool("Move", false);
@@ -382,14 +382,14 @@ public class NPCController : MonoBehaviour
                 }
                 else if (duty == DockingDirection.Top)
                 {
-                    if (transform.localPosition.z < 0.4f)
+                    if (transform.localPosition.z < 1.6f)
                     {
                         rb.AddForce(Vector3.forward * speed);
                         anim.SetBool("Move", true);
                     }
                     else
                     {
-                        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0.4f);
+                        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 1.6f);
                         rb.velocity = Vector3.zero;
                         anim.SetInteger("DanceID", -1);
                         anim.SetBool("Move", false);
@@ -441,7 +441,7 @@ public class NPCController : MonoBehaviour
                 {
                     if (currentFloating.lenNumber == Floating.floatingPosition.Top)
                     {
-                        if (transform.localPosition.z > -0.45f)
+                        if (transform.localPosition.z > -1.6f)
                         {
                             rb.AddForce(Vector3.back * speed);
                             //transform.position += Vector3.back * Time.deltaTime * speed;
@@ -449,7 +449,7 @@ public class NPCController : MonoBehaviour
                         }
                         else
                         {
-                            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, -0.45f);
+                            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, -1.6f);
                             rb.velocity = Vector3.zero;
                             anim.SetInteger("DanceID", -1);
                             anim.SetBool("Move", false);
@@ -467,14 +467,14 @@ public class NPCController : MonoBehaviour
                     }
                     else if (currentFloating.lenNumber == Floating.floatingPosition.Bottom)
                     {
-                        if (transform.localPosition.z < 0.45f)
+                        if (transform.localPosition.z < 1.6f)
                         {
                             rb.AddForce(Vector3.forward * speed);
                             anim.SetBool("Move", true);
                         }
                         else
                         {
-                            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0.45f);
+                            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, -1.6f);
                             rb.velocity = Vector3.zero;
                             anim.SetInteger("DanceID", -1);
                             anim.SetBool("Move", false);
