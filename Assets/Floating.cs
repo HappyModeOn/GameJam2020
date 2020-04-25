@@ -26,8 +26,9 @@ public class Floating : MonoBehaviour
 
     public int visualID = 0;
     public GameObject[] visualBoat;
+    public GameObject[] visualBoatBoss;
     public AudioClip[] boatSong;
-
+    public AudioClip[] bossSong;
 
     public void CheckHP()
     {
@@ -81,21 +82,31 @@ public class Floating : MonoBehaviour
             GetComponent<AudioSource>().clip = ac[Random.Range(0, ac.Length)];
         }
 
-        visualID = Random.Range(0, visualBoat.Length);
 
-        for (int i = 0; i < visualBoat.Length; i++)
+
+        if (visualBoat.Length > 0)
         {
-            visualBoat[i].SetActive(false);
+            for (int i = 0; i < visualBoat.Length; i++)
+            {
+                visualBoat[i].SetActive(false);
+            }
         }
 
-        visualBoat[visualID].SetActive(true);
-        GetComponent<AudioSource>().clip = boatSong[visualID];
-        GetComponent<AudioSource>().Play();
+        if (visualBoatBoss.Length > 0)
+        {
+            for (int i = 0; i < visualBoatBoss.Length; i++)
+            {
+                visualBoatBoss[i].SetActive(false);
+            }
+        }
+        
+
+
         //Gen NPC then start Move Right Again
         isBreak = false;
         reachTarget = false;
-        int numberOfNPC = 3;
-        numberOfNPC += currentWave % 5;
+        int numberOfNPC = 2;
+        numberOfNPC += currentWave % 3;
         for (int i = 0; i < numberOfNPC; i++)
         {
             if (i % 3 == 0)
@@ -117,15 +128,36 @@ public class Floating : MonoBehaviour
            
         }
         Debug.Log(currentWave + "/ mod 5 >>" + (currentWave %5) + "/ mod 3 >>" + (currentWave % 3));
-        if (currentWave % 3 == 0)
+        if (currentWave % 5 == 0 && lenNumber == floatingPosition.Bottom)
         {
             GameObject newNPC = npcG.AddUniqueNPC(transform.position);
             //GameObject newNPC = npcG.AddNPC(transform.position, 1);
             newNPC.transform.localScale = Vector3.one;
             newNPC.transform.parent = transform;
             npcs.Add(newNPC.GetComponent<NPCController>());
+
+      
+            //visualBoatBoss[BossCount].SetActive(true);
+            GetComponent<AudioSource>().clip = bossSong[BossCount];
+            GetComponent<AudioSource>().Play();
+            BossCount++;
+
+            if (BossCount > 2)
+            {
+                BossCount = 0;
+            }
         }
+        else
+        {
+            visualID = Random.Range(0, visualBoat.Length);
+           // visualBoat[visualID].SetActive(true);
+            GetComponent<AudioSource>().clip = boatSong[visualID];
+            GetComponent<AudioSource>().Play();
+        }
+
     }
+
+    public int BossCount = 0;
 
     private int currentWave = 1;
     public void Start()
@@ -151,7 +183,7 @@ public class Floating : MonoBehaviour
                 reachTarget = false;
                 if (transform.position.x > -30)
                 {
-                    transform.Translate(Vector3.left * speed * Time.deltaTime);
+                    transform.Translate(Vector3.left * speed*2 * Time.deltaTime);
                 }
                 else
                 {

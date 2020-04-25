@@ -62,7 +62,7 @@ MonoBehaviour:
   isMelee: 1
   projectileType: 0
   sp: {fileID: 0}
-  hp: 50
+  hp: 100
   hurtSFX:
   - {fileID: 8300000, guid: 0333241887aa18c43b6c85e1f682d80d, type: 3}
   - {fileID: 8300000, guid: 70aac760535f7be4aa3b97a44c5f70c7, type: 3}
