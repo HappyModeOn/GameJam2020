@@ -38,7 +38,6 @@ public class ThrowingObject : MonoBehaviour
         {
             if (waterVFX != null)
             {
-
                 if (waterVFX.activeInHierarchy == false)
                 {
                     waterVFX.transform.parent = null;

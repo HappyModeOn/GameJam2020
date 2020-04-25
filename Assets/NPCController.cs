@@ -147,6 +147,11 @@ public class NPCController : MonoBehaviour
             {
                 return;
             }
+            anim.ResetTrigger("Attack");
+            anim.ResetTrigger("Impact");
+            anim.ResetTrigger("Hurt");
+            anim.ResetTrigger("HeavyHurt");
+            anim.SetBool("Move", false);
             GetComponent<AudioSource>().PlayOneShot(savedSFX);
             //hack Must Delay
             transform.parent = other.transform.root;

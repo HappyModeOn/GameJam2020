@@ -155,7 +155,7 @@ public GameObject questPanel;
         }
         else
         {
-            visualID = Random.Range(0, visualBoat.Length);
+            visualID = Random.Range(0, boatSong.Length);
            // visualBoat[visualID].SetActive(true);
             GetComponent<AudioSource>().clip = boatSong[visualID];
             
