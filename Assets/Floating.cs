@@ -209,7 +209,7 @@ public GameObject questPanel;
                 reachTarget = false;
                 if (transform.position.x > -50)
                 {
-                    transform.Translate(Vector3.left * speed*2 * Time.deltaTime);
+                    transform.Translate(Vector3.left * speed*3 * Time.deltaTime);
                 }
                 else
                 {
