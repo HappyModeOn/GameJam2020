@@ -26,7 +26,6 @@ public class Floating : MonoBehaviour
 
     public int visualID = 0;
     public GameObject[] visualBoat;
-    public GameObject[] visualBoatBoss;
     public AudioClip[] boatSong;
     public AudioClip[] bossSong;
 
@@ -92,16 +91,6 @@ public class Floating : MonoBehaviour
             }
         }
 
-        if (visualBoatBoss.Length > 0)
-        {
-            for (int i = 0; i < visualBoatBoss.Length; i++)
-            {
-                visualBoatBoss[i].SetActive(false);
-            }
-        }
-        
-
-
         //Gen NPC then start Move Right Again
         isBreak = false;
         reachTarget = false;
@@ -136,8 +125,9 @@ public class Floating : MonoBehaviour
             newNPC.transform.parent = transform;
             npcs.Add(newNPC.GetComponent<NPCController>());
 
-      
-            //visualBoatBoss[BossCount].SetActive(true);
+
+            visualID = Random.Range(0, visualBoat.Length);
+            GetComponent<AudioSource>().clip = boatSong[visualID];
             GetComponent<AudioSource>().clip = bossSong[BossCount];
             GetComponent<AudioSource>().Play();
             BossCount++;
@@ -152,7 +142,7 @@ public class Floating : MonoBehaviour
             visualID = Random.Range(0, visualBoat.Length);
            // visualBoat[visualID].SetActive(true);
             GetComponent<AudioSource>().clip = boatSong[visualID];
-            GetComponent<AudioSource>().Play();
+            
         }
 
     }
@@ -181,7 +171,7 @@ public class Floating : MonoBehaviour
             else
             {
                 reachTarget = false;
-                if (transform.position.x > -30)
+                if (transform.position.x > -50)
                 {
                     transform.Translate(Vector3.left * speed*2 * Time.deltaTime);
                 }
@@ -218,6 +208,15 @@ public class Floating : MonoBehaviour
                     {
                         transform.Translate(Vector3.right * speed * Time.deltaTime);
                     }
+
+                    if (Mathf.Abs(dist) < 5f)
+                    {
+                        if (GetComponent<AudioSource>().isPlaying == false)
+                        {
+                            GetComponent<AudioSource>().Play();
+                        }
+                    }
+                        
                 }
             }
         }
