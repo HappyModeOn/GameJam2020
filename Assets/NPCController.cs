@@ -23,6 +23,9 @@ public enum ThrowerType
 }
 public class NPCController : MonoBehaviour
 {
+    public AudioClip bwawawawSFX;
+    public AudioClip savingSFX;
+    public AudioClip savedSFX;
     public DockingDirection duty = DockingDirection.None;
     public MeshRenderer mr;
     public int danceID = 0;
@@ -40,7 +43,7 @@ public class NPCController : MonoBehaviour
 
     private Rigidbody rb;
 
-
+    public AudioClip[] hurtSFX;
     void SetColorCup()
     {
         if (currentFloating.lenNumber == Floating.floatingPosition.Top)
@@ -142,6 +145,7 @@ public class NPCController : MonoBehaviour
     {
         if (other.name == "ReviveZone")
         {
+            GetComponent<AudioSource>().PlayOneShot(savedSFX);
             //hack Must Delay
             transform.parent = other.transform.root;
             isEnemy = false;
@@ -175,6 +179,8 @@ public class NPCController : MonoBehaviour
         {
             if (other.transform.root.GetComponent<CharacterMovement>().npcOnHand == null)
             {
+                GetComponent<AudioSource>().PlayOneShot(savingSFX);
+                
                 Debug.Log("Got Save");
                 other.transform.root.gameObject.GetComponent<CharacterMovement>().npcOnHand = this;
                 transform.parent = other.transform.root;
@@ -190,6 +196,8 @@ public class NPCController : MonoBehaviour
             }
             if (other.transform.root.name != transform.root.name)
             {
+                GetComponent<AudioSource>().clip = hurtSFX[Random.Range(0, hurtSFX.Length)];
+                GetComponent<AudioSource>().Play();
                 if (other.GetComponent<HeavyObject>() != null)
                 {
                     anim.SetTrigger("HeavyHurt");
@@ -208,6 +216,8 @@ public class NPCController : MonoBehaviour
         {
             if (currentFloating.name != other.tag)
             {
+                GetComponent<AudioSource>().clip = hurtSFX[Random.Range(0, hurtSFX.Length)];
+                GetComponent<AudioSource>().Play();
                 if (other.GetComponent<ThrowingObject>().damge > 1)
                 {
                     anim.SetTrigger("HeavyHurt");
@@ -240,6 +250,7 @@ public class NPCController : MonoBehaviour
     }
     public void Bounce()
     {
+        GetComponent<AudioSource>().PlayOneShot(bwawawawSFX);
         Death();
         anim.SetTrigger("Impact");
         transform.parent = null;
