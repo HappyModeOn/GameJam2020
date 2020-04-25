@@ -13,7 +13,7 @@ public class SimplePooling : MonoBehaviour {
         pool = new GameObject[transform.childCount];
         for (int i = 0;i < transform.childCount;i++)
         {
-            pool[i] = transform.GetChild(0).gameObject;
+            pool[i] = transform.GetChild(i).gameObject;
         }
     }
     public void Clear()
@@ -31,10 +31,10 @@ public class SimplePooling : MonoBehaviour {
     public void Show(Vector3 position, string tag, int direction)
     {
         pool[poolID].transform.position = position;
-
         pool[poolID].tag = tag;
-        pool[poolID].SetActive(true);
         pool[poolID].GetComponent<ThrowingObject>().directionZ = direction;
+        pool[poolID].SetActive(true);
+      
         poolID++;
 
         if (poolID >= pool.Length)

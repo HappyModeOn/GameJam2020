@@ -42,7 +42,7 @@ public class Floating : MonoBehaviour
             isBreak = true;
             reachTarget = false;
 
-            if (currentWave == 0)
+            if (currentWave == 1)
             {
                 botFloating.gameObject.SetActive(true);
             }
@@ -56,14 +56,14 @@ public class Floating : MonoBehaviour
         if (isPlayerFloating)
         {
 
-            GameObject newNPC = npcG.AddNPC(transform.position, 0);
+            GameObject newNPC = npcG.AddMeleeNPC(transform.position);
             //GameObject newNPC = npcG.AddNPC(transform.position, 1);
             newNPC.transform.localScale = Vector3.one;
             newNPC.transform.parent = transform;
             newNPC.GetComponent<NPCController>().isEnemy = false;
             npcs.Add(newNPC.GetComponent<NPCController>());
 
-            GameObject newNPC1 = npcG.AddNPC(transform.position, 1);
+            GameObject newNPC1 = npcG.AddThrowerNPC(transform.position, 1);
             //GameObject newNPC = npcG.AddNPC(transform.position, 1);
             newNPC1.transform.localScale = Vector3.one;
             newNPC1.transform.parent = transform;
@@ -76,18 +76,39 @@ public class Floating : MonoBehaviour
         isBreak = false;
         reachTarget = false;
         int numberOfNPC = 3;
-        numberOfNPC += currentWave % 3;
+        numberOfNPC += currentWave % 5;
         for (int i = 0; i < numberOfNPC; i++)
         {
-            GameObject newNPC = npcG.AddNPC(transform.position, Random.Range(0, npcG.npcPrefab.Length));
-           //GameObject newNPC = npcG.AddNPC(transform.position, 1);
+            if (i % 3 == 0)
+            {
+                GameObject newNPC = npcG.AddMeleeNPC(transform.position);
+                //GameObject newNPC = npcG.AddNPC(transform.position, 1);
+                newNPC.transform.localScale = Vector3.one;
+                newNPC.transform.parent = transform;
+                npcs.Add(newNPC.GetComponent<NPCController>());
+            }
+            else
+            {
+                GameObject newNPC = npcG.AddThrowerNPC(transform.position);
+                //GameObject newNPC = npcG.AddNPC(transform.position, 1);
+                newNPC.transform.localScale = Vector3.one;
+                newNPC.transform.parent = transform;
+                npcs.Add(newNPC.GetComponent<NPCController>());
+            }
+           
+        }
+        Debug.Log(currentWave + "/ mod 5 >>" + (currentWave %5) + "/ mod 3 >>" + (currentWave % 3));
+        if (currentWave % 3 == 0)
+        {
+            GameObject newNPC = npcG.AddUniqueNPC(transform.position);
+            //GameObject newNPC = npcG.AddNPC(transform.position, 1);
             newNPC.transform.localScale = Vector3.one;
             newNPC.transform.parent = transform;
             npcs.Add(newNPC.GetComponent<NPCController>());
         }
     }
 
-    int currentWave = 0;
+    private int currentWave = 1;
     public void Start()
     {
         PrepareNewFloating();

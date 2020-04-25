@@ -4765,9 +4765,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17af57d7d8592d94d87c96282f726efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npcPrefab:
+  npcBoss: []
+  npcMelee:
   - {fileID: 6358367080873702982, guid: 2283b34fdd93da64492218ba7aa4c029, type: 3}
+  npcProjectile:
   - {fileID: 2862554015250306424, guid: 9518e133217738c4d8622dcba5dfdf42, type: 3}
+  - {fileID: 2862554015250306424, guid: b64e2dd4f92fb7340aa99f347f2c78f7, type: 3}
+  - {fileID: 2862554015250306424, guid: 1259e53af2e81c749beb9a6c96333e5d, type: 3}
+  - {fileID: 2862554015250306424, guid: 85b9d3d1ae476c7459eb09473b3f4ba8, type: 3}
+  - {fileID: 2862554015250306424, guid: 93af30b191bb1494695976cc1dc815a4, type: 3}
+  - {fileID: 2862554015250306424, guid: 3774ecf6fe0e36b44a8bebf30527a064, type: 3}
 --- !u!4 &1236114207
 Transform:
   m_ObjectHideFlags: 0
@@ -7176,7 +7183,7 @@ PrefabInstance:
     - target: {fileID: 956504335143006810, guid: dca2ef4a036fadc4da1562ce4705806b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 956504335143006810, guid: dca2ef4a036fadc4da1562ce4705806b,
         type: 3}
@@ -7437,7 +7444,7 @@ GameObject:
   - component: {fileID: 1991133020}
   - component: {fileID: 1991133019}
   m_Layer: 0
-  m_Name: BeerPool (3)
+  m_Name: MicPool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
