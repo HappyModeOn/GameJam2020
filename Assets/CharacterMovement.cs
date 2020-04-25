@@ -64,11 +64,6 @@ public class CharacterMovement : MonoBehaviour
             saverTrigger.SetActive(false);
         }
 
-        if (currentHurtTime > 0)
-        {
-            currentHurtTime -= Time.deltaTime;
-            return;
-        }
         if (characterController.isGrounded)
         {
             // We are grounded, so recalculate

@@ -1726,7 +1726,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 393511030}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.14, y: 0.8900001, z: -5.5}
+  m_LocalPosition: {x: 1.14, y: 0.8900001, z: -7}
   m_LocalScale: {x: 20, y: 4.8145, z: 1}
   m_Children: []
   m_Father: {fileID: 2052392533}
@@ -3021,7 +3021,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 679249893}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.14, y: 0.8900001, z: -0.49900627}
+  m_LocalPosition: {x: 12, y: 0.8900001, z: -0.49900627}
   m_LocalScale: {x: 1, y: 4.8145, z: 10}
   m_Children: []
   m_Father: {fileID: 2052392533}
@@ -4515,7 +4515,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1088508269}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.14, y: 0.8900001, z: -5}
+  m_LocalPosition: {x: 1.14, y: 0.8900001, z: -7}
   m_LocalScale: {x: 20, y: 4.8145, z: 1}
   m_Children: []
   m_Father: {fileID: 2052392533}
@@ -4765,7 +4765,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17af57d7d8592d94d87c96282f726efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npcBoss: []
+  npcBoss:
+  - {fileID: 6358367080873702982, guid: b02d560b86221824f83582359e1c97ef, type: 3}
+  - {fileID: 6358367080873702982, guid: e1521ff44d5a60648944084b98011985, type: 3}
   npcMelee:
   - {fileID: 6358367080873702982, guid: 2283b34fdd93da64492218ba7aa4c029, type: 3}
   npcProjectile:
@@ -6014,7 +6016,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1611486660}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.86, y: 0.8900001, z: -0.49900627}
+  m_LocalPosition: {x: -9, y: 0.8900001, z: -0.49900627}
   m_LocalScale: {x: 1, y: 4.8145, z: 10}
   m_Children: []
   m_Father: {fileID: 2052392533}
@@ -8268,6 +8270,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5181388495826994094, guid: 6ac92aa920f0e7442be30e48e620846f,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 3495884642893027674, guid: 8e2b0a3cb0f4d3945a0f1429d679d549,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ac92aa920f0e7442be30e48e620846f, type: 3}
 --- !u!4 &9205909057179863973 stripped
