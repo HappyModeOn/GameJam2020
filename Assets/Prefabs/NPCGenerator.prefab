@@ -46,7 +46,6 @@ MonoBehaviour:
   npcBoss:
   - {fileID: 6358367080873702982, guid: b02d560b86221824f83582359e1c97ef, type: 3}
   - {fileID: 6358367080873702982, guid: e1521ff44d5a60648944084b98011985, type: 3}
-  - {fileID: 2862554015250306424, guid: 52bc2e0c0ab9e7443b0889f4e3d9bf30, type: 3}
   - {fileID: 2862554015250306424, guid: 3774ecf6fe0e36b44a8bebf30527a064, type: 3}
   npcMelee:
   - {fileID: 2862554015250306424, guid: 4edc3c8290829ef418f3be4b5a57a1d1, type: 3}

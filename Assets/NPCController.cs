@@ -120,10 +120,12 @@ public class NPCController : MonoBehaviour
             if (ran > 50)
             {
 
+                Debug.Log("Got Invade on Top");
                 duty = DockingDirection.Top;
             }
             else
             {
+                Debug.Log("Got Invade on Bot");
                 duty = DockingDirection.Bot;
             }
         
@@ -132,15 +134,18 @@ public class NPCController : MonoBehaviour
         {
             if (currentFloating.topFloating.reachTarget)
             {
+                Debug.Log("Got Invade on Top");
                 duty = DockingDirection.Top;
             }
             else
             {
+                Debug.Log("Got Invade on Bot");
                 duty = DockingDirection.Bot;
             }
         }
         else
         {
+            Debug.Log("NoEnemy");
             duty = DockingDirection.None;
         }
             
@@ -175,7 +180,7 @@ public class NPCController : MonoBehaviour
                 currentFloating.npcs.Add(this);
             }
             GameObject.Find("Player").GetComponent<CharacterMovement>().npcOnHand = null;
-            CheckDuty();
+            
             SetColorCup();
             ///hack careful for multiplayer
             if (danceID != -1)
@@ -192,6 +197,7 @@ public class NPCController : MonoBehaviour
             rb.velocity = Vector3.zero;
             rb.isKinematic = false;
             anim.SetBool("Rescue", false);
+            CheckDuty();
         }
         else if (other.name == "Saver")
         {

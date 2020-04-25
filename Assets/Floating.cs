@@ -80,12 +80,19 @@ public GameObject questPanel;
         if (isPlayerFloating)
         {
 
-            GameObject newNPC = npcG.AddThrowerNPC(transform.position);
+            GameObject newNPC = npcG.AddMeleeNPC(transform.position);
             //GameObject newNPC = npcG.AddNPC(transform.position, 1);
             newNPC.transform.localScale = Vector3.one;
             newNPC.transform.parent = transform;
             newNPC.GetComponent<NPCController>().isEnemy = false;
             npcs.Add(newNPC.GetComponent<NPCController>());
+
+            GameObject newNPC2 = npcG.AddMeleeNPC(transform.position);
+            //GameObject newNPC = npcG.AddNPC(transform.position, 1);
+            newNPC2.transform.localScale = Vector3.one;
+            newNPC2.transform.parent = transform;
+            newNPC2.GetComponent<NPCController>().isEnemy = false;
+            npcs.Add(newNPC2.GetComponent<NPCController>());
 
             GameObject newNPC1 = npcG.AddThrowerNPC(transform.position, 1);
             //GameObject newNPC = npcG.AddNPC(transform.position, 1);
@@ -110,33 +117,18 @@ public GameObject questPanel;
         //Gen NPC then start Move Right Again
         isBreak = false;
         reachTarget = false;
-        int numberOfNPC = 3;
+        int numberOfNPC = 2;
         numberOfNPC += currentWave % 2;
         
         Debug.Log(currentWave + "/ mod 5 >>" + (currentWave %5) + "/ mod 3 >>" + (currentWave % 3));
-        if (currentWave % 1 == 0 && lenNumber == floatingPosition.Bottom)
+        if (currentWave % 5 == 0 && lenNumber == floatingPosition.Bottom)
         {
-            if (BossCount == 2)
-            {
-                for (int i = 0; i < 4; i++)
-                {
-                    GameObject newNPC = npcG.AddUniqueNPC(transform.position, BossCount, true);
-                    //GameObject newNPC = npcG.AddNPC(transform.position, 1);
-                    newNPC.transform.localScale = Vector3.one;
-                    newNPC.transform.parent = transform;
-                    npcs.Add(newNPC.GetComponent<NPCController>());
-                }
-            }
-            else
-            {
-                GameObject newNPC = npcG.AddUniqueNPC(transform.position, BossCount);
-                //GameObject newNPC = npcG.AddNPC(transform.position, 1);
-                newNPC.transform.localScale = Vector3.one;
-                newNPC.transform.parent = transform;
-                npcs.Add(newNPC.GetComponent<NPCController>());
-            }
 
-
+            GameObject newNPC = npcG.AddUniqueNPC(transform.position, BossCount);
+            //GameObject newNPC = npcG.AddNPC(transform.position, 1);
+            newNPC.transform.localScale = Vector3.one;
+            newNPC.transform.parent = transform;
+            npcs.Add(newNPC.GetComponent<NPCController>());
 
             visualID = Random.Range(0, visualBoat.Length);
             visualBoat[visualID].SetActive(true);
@@ -144,7 +136,7 @@ public GameObject questPanel;
           
             BossCount++;
 
-            if (BossCount > 3)
+            if (BossCount > 2)
             {
                 BossCount = 0;
             }
