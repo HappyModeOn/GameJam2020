@@ -56,7 +56,7 @@ Material:
     - _GrossBrightness: 2
     - _GrossTilling: 4
     - _ShoreBrightness: 3
-    - _ShoreWidth: 0.25
+    - _ShoreWidth: 0.15
     - _WaveHeight: 0.5
     - _WaveSpeed: 0.5
     - _WaveTilling: -2
