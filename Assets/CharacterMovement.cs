@@ -123,7 +123,7 @@ public class CharacterMovement : MonoBehaviour
 
             if (Input.GetButton("Fire1"))
             {
-                if (hitbox.activeInHierarchy == false && currentHurtTime <= 0)
+                if (hitbox.activeInHierarchy == false)
                 {
                     anim.SetTrigger("Attack");
                     hitbox.SetActive(true);

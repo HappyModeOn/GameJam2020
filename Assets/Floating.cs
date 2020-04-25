@@ -39,6 +39,7 @@ public class Floating : MonoBehaviour
         }
         if (currentHP <= 0)
         {
+            GetComponent<AudioSource>().Stop();
             isBreak = true;
             reachTarget = false;
 
@@ -49,7 +50,7 @@ public class Floating : MonoBehaviour
             currentWave += 1;
         }
     }
-
+    public AudioClip[] ac;
 
     void PrepareNewFloating()
     {
@@ -72,6 +73,12 @@ public class Floating : MonoBehaviour
 
             return;
         }
+        if (ac.Length > 0)
+        {
+            GetComponent<AudioSource>().clip = ac[Random.Range(0, ac.Length)];
+        }
+      
+        GetComponent<AudioSource>().Play();
         //Gen NPC then start Move Right Again
         isBreak = false;
         reachTarget = false;

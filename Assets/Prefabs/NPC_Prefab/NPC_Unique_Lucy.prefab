@@ -57,7 +57,7 @@ MonoBehaviour:
   isMelee: 1
   projectileType: 0
   sp: {fileID: 0}
-  hp: 20
+  hp: 30
   currentHP: 1
   knockbackPower: {x: 300, y: 300, z: 0}
   isDeath: 0
