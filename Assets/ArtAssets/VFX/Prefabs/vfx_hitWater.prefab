@@ -14452,3 +14452,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTime: 0.6
+  destroy: 1
