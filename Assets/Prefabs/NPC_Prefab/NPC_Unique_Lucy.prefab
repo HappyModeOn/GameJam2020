@@ -58,7 +58,7 @@ MonoBehaviour:
   isEnemy: 1
   anim: {fileID: 1116109037135559292}
   currentFloating: {fileID: 0}
-  speed: 7
+  speed: 3
   isMelee: 1
   projectileType: 0
   sp: {fileID: 0}
@@ -258,6 +258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTime: 1
+  destroy: 0
 --- !u!54 &7291693730646632934
 Rigidbody:
   m_ObjectHideFlags: 0
