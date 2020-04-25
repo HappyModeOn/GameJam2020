@@ -22,9 +22,12 @@ public class Floating : MonoBehaviour
     public float speed = 3;
 
     public List<NPCController> npcs;
-   
 
-    
+
+    public int visualID = 0;
+    public GameObject[] visualBoat;
+    public AudioClip[] boatSong;
+
 
     public void CheckHP()
     {
@@ -77,7 +80,16 @@ public class Floating : MonoBehaviour
         {
             GetComponent<AudioSource>().clip = ac[Random.Range(0, ac.Length)];
         }
-      
+
+        visualID = Random.Range(0, visualBoat.Length);
+
+        for (int i = 0; i < visualBoat.Length; i++)
+        {
+            visualBoat[i].SetActive(false);
+        }
+
+        visualBoat[visualID].SetActive(true);
+        GetComponent<AudioSource>().clip = boatSong[visualID];
         GetComponent<AudioSource>().Play();
         //Gen NPC then start Move Right Again
         isBreak = false;
