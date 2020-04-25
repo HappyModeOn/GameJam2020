@@ -44,10 +44,7 @@ public class Floating : MonoBehaviour
         {
             GetComponent<AudioSource>().Stop();
             isBreak = true;
-            if (PlayerFloating.GetComponent<AudioSource>() != null)
-            {
-                PlayerFloating.GetComponent<AudioSource>().Play();
-            }
+            
           
             reachTarget = false;
 
@@ -60,7 +57,19 @@ public class Floating : MonoBehaviour
         }
     }
 
-    public GameObject questPanel;
+
+    IEnumerator DelayPlayerBGM()
+    {
+        //yield on a new YieldInstruction that waits for 5 seconds.
+        yield return new WaitForSeconds(7);
+
+        if (PlayerFloating.GetComponent<AudioSource>() != null)
+        {
+            PlayerFloating.GetComponent<AudioSource>().Play();
+        }
+    }
+   
+public GameObject questPanel;
     void PrepareNewFloating()
     {
         if (isPlayerFloating)
@@ -79,7 +88,7 @@ public class Floating : MonoBehaviour
             newNPC1.transform.parent = transform;
             newNPC1.GetComponent<NPCController>().isEnemy = false;
             npcs.Add(newNPC1.GetComponent<NPCController>());
-            questPanel.SetActive(false);
+            questPanel.SetActive(true);
             return;
         }
 
@@ -154,6 +163,7 @@ public class Floating : MonoBehaviour
     private int currentWave = 1;
     public void Start()
     {
+        StartCoroutine(DelayPlayerBGM());
         PrepareNewFloating();
     }
    public GameObject gameOverPanel;
