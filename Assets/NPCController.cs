@@ -49,7 +49,7 @@ public class NPCController : MonoBehaviour
     public AudioClip[] hurtSFX;
     void SetColorCup()
     {
-        if (currentFloating.lenNumber == Floating.floatingPosition.Top)
+        if (currentFloating.lenNumber == Floating.floatingPosition.Middle)
         {
             mr.material.SetColor("_Color", Color.red);
         }
