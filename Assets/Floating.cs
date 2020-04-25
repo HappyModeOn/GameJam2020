@@ -70,6 +70,7 @@ public class Floating : MonoBehaviour
         }
         yield return new WaitForSeconds(2);
         topFloating.gameObject.SetActive(true);
+        introPanel.SetActive(false);
     }
    
 public GameObject questPanel;
