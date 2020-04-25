@@ -116,7 +116,7 @@ public GameObject questPanel;
         Debug.Log(currentWave + "/ mod 5 >>" + (currentWave %5) + "/ mod 3 >>" + (currentWave % 3));
         if (currentWave % 1 == 0 && lenNumber == floatingPosition.Bottom)
         {
-            if (BossCount == 3)
+            if (BossCount == 2)
             {
                 for (int i = 0; i < 4; i++)
                 {
