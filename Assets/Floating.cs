@@ -75,7 +75,7 @@ public GameObject questPanel;
         if (isPlayerFloating)
         {
 
-            GameObject newNPC = npcG.AddMeleeNPC(transform.position);
+            GameObject newNPC = npcG.AddThrowerNPC(transform.position);
             //GameObject newNPC = npcG.AddNPC(transform.position, 1);
             newNPC.transform.localScale = Vector3.one;
             newNPC.transform.parent = transform;
@@ -187,9 +187,6 @@ public GameObject questPanel;
     public GameObject introPanel;
     void Update()
     {
-
-
-
         if (isBreak)
         {
             if (isPlayerFloating)
@@ -197,7 +194,6 @@ public GameObject questPanel;
                 GetComponent<AudioSource>().Stop();
                 gameOverPanel.SetActive(true);
                 introPanel.SetActive(false);
-
             }
             else
             {
