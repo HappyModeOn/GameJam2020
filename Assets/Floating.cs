@@ -134,7 +134,7 @@ public GameObject questPanel;
             {
                 for (int i = 0; i < 4; i++)
                 {
-                    GameObject newNPC = npcG.AddUniqueNPC(transform.position, BossCount);
+                    GameObject newNPC = npcG.AddUniqueNPC(transform.position, BossCount, true);
                     //GameObject newNPC = npcG.AddNPC(transform.position, 1);
                     newNPC.transform.localScale = Vector3.one;
                     newNPC.transform.parent = transform;
