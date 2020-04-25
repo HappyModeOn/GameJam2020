@@ -145,7 +145,7 @@ public GameObject questPanel;
                 boatSongID = 0;
             }
             GetComponent<AudioSource>().clip = bossSong[BossCount];
-            GetComponent<AudioSource>().Play();
+          
             BossCount++;
 
             if (BossCount > 2)
@@ -160,6 +160,7 @@ public GameObject questPanel;
             GetComponent<AudioSource>().clip = boatSong[visualID];
             
         }
+        GetComponent<AudioSource>().Play();
 
     }
 
@@ -225,14 +226,6 @@ public GameObject questPanel;
                     else
                     {
                         transform.Translate(Vector3.right * speed * Time.deltaTime);
-                    }
-
-                    if (Mathf.Abs(dist) < 5f)
-                    {
-                        if (GetComponent<AudioSource>().isPlaying == false)
-                        {
-                            GetComponent<AudioSource>().Play();
-                        }
                     }
                         
                 }

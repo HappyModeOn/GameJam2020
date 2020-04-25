@@ -6,6 +6,7 @@ public class AutoDeactivate : MonoBehaviour
 {
     public float lifeTime = 1;
     private float currentLifeTime = 1;
+    public bool destroy = false;
     // Start is called before the first frame update
     private void OnEnable()
     {
@@ -21,7 +22,15 @@ public class AutoDeactivate : MonoBehaviour
         }
         else
         {
-            gameObject.SetActive(false);
+            if (destroy)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                gameObject.SetActive(false);
+            }
+           
         }
        
     }
