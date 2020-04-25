@@ -55,17 +55,32 @@ public class Floating : MonoBehaviour
     {
         if (isPlayerFloating)
         {
+
+            GameObject newNPC = npcG.AddNPC(transform.position, 0);
+            //GameObject newNPC = npcG.AddNPC(transform.position, 1);
+            newNPC.transform.localScale = Vector3.one;
+            newNPC.transform.parent = transform;
+            newNPC.GetComponent<NPCController>().isEnemy = false;
+            npcs.Add(newNPC.GetComponent<NPCController>());
+
+            GameObject newNPC1 = npcG.AddNPC(transform.position, 1);
+            //GameObject newNPC = npcG.AddNPC(transform.position, 1);
+            newNPC1.transform.localScale = Vector3.one;
+            newNPC1.transform.parent = transform;
+            newNPC1.GetComponent<NPCController>().isEnemy = false;
+            npcs.Add(newNPC1.GetComponent<NPCController>());
+
             return;
         }
         //Gen NPC then start Move Right Again
         isBreak = false;
         reachTarget = false;
         int numberOfNPC = 3;
-        numberOfNPC += currentWave % 2;
+        numberOfNPC += currentWave % 3;
         for (int i = 0; i < numberOfNPC; i++)
         {
-            //GameObject newNPC = npcG.AddNPC(transform.position, Random.Range(0, npcG.npcPrefab.Length));
-           GameObject newNPC = npcG.AddNPC(transform.position, 1);
+            GameObject newNPC = npcG.AddNPC(transform.position, Random.Range(0, npcG.npcPrefab.Length));
+           //GameObject newNPC = npcG.AddNPC(transform.position, 1);
             newNPC.transform.localScale = Vector3.one;
             newNPC.transform.parent = transform;
             npcs.Add(newNPC.GetComponent<NPCController>());
@@ -77,6 +92,7 @@ public class Floating : MonoBehaviour
     {
         PrepareNewFloating();
     }
+   public GameObject gameOverPanel;
     void Update()
     {
 
@@ -84,34 +100,36 @@ public class Floating : MonoBehaviour
 
         if (isBreak)
         {
-            if (transform.position.x > -30)
+            if (isPlayerFloating)
             {
-                transform.Translate(Vector3.left * speed * Time.deltaTime);
+                GetComponent<AudioSource>().Stop();
+                gameOverPanel.SetActive(false);
+
             }
             else
             {
-                PrepareNewFloating();
+                reachTarget = false;
+                if (transform.position.x > -30)
+                {
+                    transform.Translate(Vector3.left * speed * Time.deltaTime);
+                }
+                else
+                {
+                    PrepareNewFloating();
+                }
             }
+            
         }
         else
         {
-            if (isPlayerFloating == false)// Hack
-            {
-                CheckHP();
-            }
+            CheckHP();
             if (isPlayerFloating)
             {
-                if (topFloating.reachTarget)
-                {
-                    reachTarget = true;
-                }
-                if (botFloating.reachTarget)
-                {
-                    reachTarget = true;
-                }
+
             }
             else
             {
+                
                 if (reachTarget == false)
                 {
                     float dist = transform.position.x - PlayerFloating.position.x;

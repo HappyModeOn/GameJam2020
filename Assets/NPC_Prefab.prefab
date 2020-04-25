@@ -53,11 +53,13 @@ MonoBehaviour:
   anim: {fileID: 5469718186785499309}
   speed: 7
   isMelee: 1
-  hp: 1
+  projectileType: 0
+  sp: {fileID: 0}
+  hp: 5
   currentHP: 1
   knockbackPower: {x: 300, y: 300, z: 0}
   isDeath: 0
-  attackCD: 5
+  attackCD: 3
   hitBox: {fileID: 6358367082395080780}
 --- !u!136 &6358367080873702981
 CapsuleCollider:

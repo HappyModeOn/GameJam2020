@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+public enum DockingDirection
+{
+    None,
+    Top,
+    Both,
+    Bot
+}
 public enum ThrowerType
 {
     Beer,
@@ -10,12 +17,12 @@ public enum ThrowerType
 }
 public class NPCController : MonoBehaviour
 {
-    int duty = 100;
+    public DockingDirection duty = DockingDirection.None;
     public MeshRenderer mr;
     public int danceID = 0;
     public bool isEnemy = false;
     public Animator anim;
-    private Floating currentFloating;
+    public Floating currentFloating;
     public float speed = 3;
     // Start is called before the first frame update
     public bool isMelee = false;
@@ -72,53 +79,58 @@ public class NPCController : MonoBehaviour
     {
         if (currentFloating.topFloating.reachTarget && currentFloating.botFloating.reachTarget)
         {
-            duty = Random.Range(0, 100);
+            int ran = Random.Range(0, 100);
+            if (ran > 50)
+            {
+
+                duty = DockingDirection.Top;
+            }
+            else
+            {
+                duty = DockingDirection.Bot;
+            }
+        
+        }
+        else if (currentFloating.topFloating.reachTarget || currentFloating.botFloating.reachTarget)
+        {
+            if (currentFloating.topFloating.reachTarget)
+            {
+                duty = DockingDirection.Top;
+            }
+            else
+            {
+                duty = DockingDirection.Bot;
+            }
         }
         else
         {
-            if (currentFloating.topFloating.reachTarget || currentFloating.botFloating.reachTarget)
-            {
-                if (currentFloating.topFloating.reachTarget)
-                {
-                    duty = 0;
-                }
-                else
-                {
-                    duty = 100;
-                }
-            }
+            duty = DockingDirection.None;
         }
+            
+        
     }
+
+
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.name == "ReviveZone")
         {
-            if (!isEnemy)
-            {
-                return;
-            }
-            if (anim.GetBool("OnWater") == false)
-            {
-                return;
-            }
             //hack Must Delay
             transform.parent = other.transform.root;
             isEnemy = false;
             currentHP = hp;
             isDeath = false;
-            transform.position = other.transform.position;
             currentFloating = transform.root.GetComponent<Floating>();
-            rb.isKinematic = false;
+            
             if (currentFloating.npcs.Contains(this) == false)
             {
                 currentFloating.npcs.Add(this);
             }
-
+            GameObject.Find("Player").GetComponent<CharacterMovement>().npcOnHand = null;
             CheckDuty();
             SetColorCup();
             ///hack careful for multiplayer
-            GameObject.Find("Player").GetComponent<CharacterMovement>().currentLifeSave = false;
             if (danceID != -1)
             {
                 anim.SetInteger("DanceID", danceID);
@@ -127,16 +139,18 @@ public class NPCController : MonoBehaviour
             {
                 anim.SetInteger("DanceID", Random.Range(0, 3));
             }
+            gameObject.layer = LayerMask.NameToLayer("NPC");
             anim.SetBool("OnWater", false);
             anim.SetBool("Death", false);
             rb.velocity = Vector3.zero;
+            rb.isKinematic = false;
         }
         else if (other.name == "Saver")
         {
-            if (other.transform.root.GetComponent<CharacterMovement>().currentLifeSave == false)
+            if (other.transform.root.GetComponent<CharacterMovement>().npcOnHand == null)
             {
                 Debug.Log("Got Save");
-                other.transform.root.gameObject.GetComponent<CharacterMovement>().currentLifeSave = true;
+                other.transform.root.gameObject.GetComponent<CharacterMovement>().npcOnHand = this;
                 transform.parent = other.transform.root;
                 GetComponent<Rigidbody>().isKinematic = true;
                 transform.localPosition = Vector3.zero;
@@ -144,6 +158,10 @@ public class NPCController : MonoBehaviour
         }
         else if (other.name == "HitBox")
         {
+            if (currentFloating.isPlayerFloating && other.transform.root.name == "Player")
+            {
+                return;
+            }
             if (other.transform.root.name != transform.root.name)
             {
                 if (other.GetComponent<HeavyObject>() != null)
@@ -157,6 +175,7 @@ public class NPCController : MonoBehaviour
                     anim.SetTrigger("Hurt");
                 }
             }
+           
 
         }
         else if (other.GetComponent<ThrowingObject>() != null)
@@ -186,17 +205,21 @@ public class NPCController : MonoBehaviour
 
     }
 
-
-    public void Bounce()
+    private void Death()
     {
+        isDeath = true;
         currentFloating.npcs.Remove(this);
         gameObject.layer = LayerMask.NameToLayer("Drowner");
+        anim.SetBool("Death", true);
+    }
+    public void Bounce()
+    {
+        Death();
         anim.SetTrigger("Impact");
         transform.parent = null;
-        isDeath = true;
-        rb.AddForce(new Vector3(Random.Range(-500, 500), Random.Range(300, 700), Random.Range(-300, 300)));
-        currentFloating.npcs.Remove(this);
-        anim.SetBool("Death", true);
+       
+        rb.AddForce(new Vector3(Random.Range(300, 500), Random.Range(150, 350), Random.Range(-50, 50)));
+     
     }
     // Update is called once per frame
 
@@ -211,40 +234,57 @@ public class NPCController : MonoBehaviour
         //rb.MovePosition(Vector3.forward * speed * Time.deltaTime);
         if (anim.GetBool("OnWater"))
         {
+
             if (transform.parent == null)
             {
                 transform.position += Vector3.left * Time.deltaTime * speed / 5;
             }
-           
+            else
+            {
+                if (isDeath == false)
+                {
+                    Death();
+                }
+            }
+
         }
         if (isDeath)
         {
-            
+
             if (transform.position.y < 1.5f)
             {
                 //rb.velocity = Vector3.zero;
                 anim.SetBool("OnWater", true);
             }
-           
-        
+            if (transform.position.x < -15f)
+            {
+                Destroy(gameObject);
+            }
+
+
             return;
         }
 
-        if (currentFloating.reachTarget)
+        if (currentFloating.isPlayerFloating)
         {
+            if (currentFloating.topFloating.reachTarget == false && currentFloating.botFloating.reachTarget == false)
+            {
+                return;
+            }
             if (isMelee)
             {
-                if (currentFloating.lenNumber == Floating.floatingPosition.Top)
+                if (duty == DockingDirection.Bot)
                 {
-                    if (transform.localPosition.z > -0.45f)
+                    if (transform.localPosition.z > -0.4f)
                     {
                         rb.AddForce(Vector3.back * speed);
-                        //transform.position += Vector3.back * Time.deltaTime * speed;
                         anim.SetBool("Move", true);
+
                     }
                     else
                     {
-                        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, -0.45f);
+
+                        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, -0.4f);
                         rb.velocity = Vector3.zero;
                         anim.SetInteger("DanceID", -1);
                         anim.SetBool("Move", false);
@@ -254,81 +294,24 @@ public class NPCController : MonoBehaviour
                         }
                         else
                         {
+                            CheckDuty();
                             currentAttackCD = attackCD;
                             anim.SetTrigger("Attack");
                             hitBox.SetActive(true);
                         }
                     }
+
                 }
-                else if (currentFloating.lenNumber == Floating.floatingPosition.Middle)
+                else if (duty == DockingDirection.Top)
                 {
-
-                    if (duty < 50)
-                    {
-                        if (transform.localPosition.z > -0.4f)
-                        {
-                            rb.AddForce(Vector3.back * speed);
-                            anim.SetBool("Move", true);
-
-                        }
-                        else
-                        {
-
-                            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, -0.4f);
-                            rb.velocity = Vector3.zero;
-                            anim.SetInteger("DanceID", -1);
-                            anim.SetBool("Move", false);
-                            if (currentAttackCD > 0)
-                            {
-                                currentAttackCD -= Time.deltaTime;
-                            }
-                            else
-                            {
-                                CheckDuty();
-                                currentAttackCD = attackCD;
-                                anim.SetTrigger("Attack");
-                                hitBox.SetActive(true);
-                            }
-                        }
-
-                    }
-                    else
-                    {
-                        if (transform.localPosition.z < 0.4f)
-                        {
-                            rb.AddForce(Vector3.forward * speed);
-                            anim.SetBool("Move", true);
-                        }
-                        else
-                        {
-                            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0.4f);
-                            rb.velocity = Vector3.zero;
-                            anim.SetInteger("DanceID", -1);
-                            anim.SetBool("Move", false);
-                            if (currentAttackCD > 0)
-                            {
-                                currentAttackCD -= Time.deltaTime;
-                            }
-                            else
-                            {
-                                CheckDuty();
-                                currentAttackCD = attackCD;
-                                anim.SetTrigger("Attack");
-                                hitBox.SetActive(true);
-                            }
-                        }
-                    }
-                }
-                else if (currentFloating.lenNumber == Floating.floatingPosition.Bottom)
-                {
-                    if (transform.localPosition.z < 0.45f)
+                    if (transform.localPosition.z < 0.4f)
                     {
                         rb.AddForce(Vector3.forward * speed);
                         anim.SetBool("Move", true);
                     }
                     else
                     {
-                        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0.45f);
+                        transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0.4f);
                         rb.velocity = Vector3.zero;
                         anim.SetInteger("DanceID", -1);
                         anim.SetBool("Move", false);
@@ -338,12 +321,14 @@ public class NPCController : MonoBehaviour
                         }
                         else
                         {
+                            CheckDuty();
                             currentAttackCD = attackCD;
                             anim.SetTrigger("Attack");
                             hitBox.SetActive(true);
                         }
                     }
                 }
+                
             }
             else
             {
@@ -353,25 +338,109 @@ public class NPCController : MonoBehaviour
                 }
                 else
                 {
+                    CheckDuty();
                     currentAttackCD = attackCD;
                     anim.SetTrigger("Attack");
-                    GameObject trb = sp.Show(transform.position, currentFloating.name);
+                   
+
+                    if (duty == DockingDirection.Top)
+                    {
+                        sp.Show(transform.position, currentFloating.name, 1);
+                    }
+                    else
+                    {
+                        sp.Show(transform.position, currentFloating.name, -1);
+                    }
+                    
+                }
+            }
+        }
+        else
+        {
+            if (currentFloating.reachTarget)
+            {
+                if (isMelee)
+                {
                     if (currentFloating.lenNumber == Floating.floatingPosition.Top)
                     {
-                        trb.GetComponent<ThrowingObject>().directionZ = -1;
-                    }
-                    else if (currentFloating.lenNumber == Floating.floatingPosition.Middle)
-                    {
+                        if (transform.localPosition.z > -0.45f)
+                        {
+                            rb.AddForce(Vector3.back * speed);
+                            //transform.position += Vector3.back * Time.deltaTime * speed;
+                            anim.SetBool("Move", true);
+                        }
+                        else
+                        {
+                            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, -0.45f);
+                            rb.velocity = Vector3.zero;
+                            anim.SetInteger("DanceID", -1);
+                            anim.SetBool("Move", false);
+                            if (currentAttackCD > 0)
+                            {
+                                currentAttackCD -= Time.deltaTime;
+                            }
+                            else
+                            {
+                                currentAttackCD = attackCD;
+                                anim.SetTrigger("Attack");
+                                hitBox.SetActive(true);
+                            }
+                        }
                     }
                     else if (currentFloating.lenNumber == Floating.floatingPosition.Bottom)
                     {
-                        trb.GetComponent<ThrowingObject>().directionZ = 1;
+                        if (transform.localPosition.z < 0.45f)
+                        {
+                            rb.AddForce(Vector3.forward * speed);
+                            anim.SetBool("Move", true);
+                        }
+                        else
+                        {
+                            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0.45f);
+                            rb.velocity = Vector3.zero;
+                            anim.SetInteger("DanceID", -1);
+                            anim.SetBool("Move", false);
+                            if (currentAttackCD > 0)
+                            {
+                                currentAttackCD -= Time.deltaTime;
+                            }
+                            else
+                            {
+                                currentAttackCD = attackCD;
+                                anim.SetTrigger("Attack");
+                                hitBox.SetActive(true);
+                            }
+                        }
                     }
                 }
-             
+                else
+                {
+                    if (currentAttackCD > 0)
+                    {
+                        currentAttackCD -= Time.deltaTime;
+                    }
+                    else
+                    {
+                        CheckDuty();
+                        currentAttackCD = attackCD;
+                        anim.SetTrigger("Attack");
+                       
+                        if (currentFloating.lenNumber == Floating.floatingPosition.Top)
+                        {
+                            sp.Show(transform.position, currentFloating.name, -1);
+                        }
+                        else if (currentFloating.lenNumber == Floating.floatingPosition.Bottom)
+                        {
+                            sp.Show(transform.position, currentFloating.name , 1);
+                        }
+                    }
 
+
+                }
             }
         }
+
+        
         
         
         

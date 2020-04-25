@@ -16,22 +16,13 @@ public class CharacterMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
         if (other.name == "HitBox")
         {
             if (other.transform.root.name != transform.root.name)
             {
 
                 anim.SetTrigger("Hurt");
-                if (other.transform.position.z > transform.position.z)
-                {
-                    moveDirection = new Vector3(0, 0.1f, -0.5f);
-                }
-                else
-                {
-                    moveDirection = new Vector3(0, 0.1f, 0.5f);
 
-                }
                 currentHurtTime = hurtTime;
             }
         }
@@ -40,21 +31,16 @@ public class CharacterMovement : MonoBehaviour
             if (other.GetComponent<ThrowingObject>().damge > 1)
             {
                 anim.SetTrigger("HeavyHurt");
-                if (other.transform.position.z > transform.position.z)
-                {
-                    moveDirection = new Vector3(0, 0.2f, -0.5f);
-                }
-                else
-                {
-                    moveDirection = new Vector3(0, 0.2f, 0.5f);
-                }
+
+              
             }
+            currentHurtTime = hurtTime;
         }
     }
     public MeshRenderer meshRenderer;
     public float hurtTime = 3;
     private float currentHurtTime = 0;
-    public bool currentLifeSave = false;
+    public NPCController npcOnHand;
     void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -77,17 +63,17 @@ public class CharacterMovement : MonoBehaviour
             anim.SetBool("OnWater", false);
             saverTrigger.SetActive(false);
         }
+
         if (currentHurtTime > 0)
         {
             currentHurtTime -= Time.deltaTime;
-            characterController.Move(moveDirection * Time.deltaTime);
             return;
         }
-
         if (characterController.isGrounded)
         {
             // We are grounded, so recalculate
             // move direction directly from axes
+           
             moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
 
             if (moveDirection != Vector3.zero)
@@ -125,7 +111,7 @@ public class CharacterMovement : MonoBehaviour
                 if (moveDirection.x > 0)
                 {
                   
-                    if (currentLifeSave)
+                    if (npcOnHand != null)
                     {
                         moveDirection.x = moveDirection.x / 4;
                     }
@@ -135,9 +121,10 @@ public class CharacterMovement : MonoBehaviour
                     }
                 }
             }
+
             if (Input.GetButton("Fire1"))
             {
-                if (hitbox.activeInHierarchy == false)
+                if (hitbox.activeInHierarchy == false && currentHurtTime <= 0)
                 {
                     anim.SetTrigger("Attack");
                     hitbox.SetActive(true);
@@ -152,5 +139,12 @@ public class CharacterMovement : MonoBehaviour
 
         // Move the controller
         characterController.Move(moveDirection * Time.deltaTime);
+    }
+
+    
+
+    public void RestartGame()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
 }
