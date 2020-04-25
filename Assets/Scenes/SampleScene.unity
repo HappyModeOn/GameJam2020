@@ -3679,7 +3679,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 2
   MaxDistance: 5
   Pan2D: 0
   rolloffMode: 0
@@ -3782,6 +3782,7 @@ MonoBehaviour:
   boatSong: []
   bossSong: []
   questPanel: {fileID: 99355813}
+  boatSongID: 0
   BossCount: 0
   gameOverPanel: {fileID: 2034894043}
 --- !u!54 &925312495
@@ -5929,7 +5930,7 @@ PrefabInstance:
     - target: {fileID: 4535750552693928030, guid: b1ce8ca3cfce89842a22dd327c4ad3aa,
         type: 3}
       propertyPath: boatSong.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4535750552693928030, guid: b1ce8ca3cfce89842a22dd327c4ad3aa,
         type: 3}
@@ -5985,7 +5986,7 @@ PrefabInstance:
         type: 3}
       propertyPath: boatSong.Array.data[2]
       value: 
-      objectReference: {fileID: 8300000, guid: 7aee41ddcc29a8848884fd6ed79b45c9, type: 3}
+      objectReference: {fileID: 8300000, guid: b3cb9eb76c45094439e0f6b83982e523, type: 3}
     - target: {fileID: 4535750552693928030, guid: b1ce8ca3cfce89842a22dd327c4ad3aa,
         type: 3}
       propertyPath: bossSong.Array.data[2]
@@ -6036,6 +6037,11 @@ PrefabInstance:
       propertyPath: questPanel
       value: 
       objectReference: {fileID: 99355813}
+    - target: {fileID: 4535750552693928030, guid: b1ce8ca3cfce89842a22dd327c4ad3aa,
+        type: 3}
+      propertyPath: boatSongID
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6013653590737633179, guid: b1ce8ca3cfce89842a22dd327c4ad3aa,
         type: 3}
       propertyPath: m_IsActive
@@ -8555,7 +8561,7 @@ PrefabInstance:
     - target: {fileID: 4535750552693928030, guid: b1ce8ca3cfce89842a22dd327c4ad3aa,
         type: 3}
       propertyPath: boatSong.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4535750552693928030, guid: b1ce8ca3cfce89842a22dd327c4ad3aa,
         type: 3}
@@ -8606,12 +8612,12 @@ PrefabInstance:
         type: 3}
       propertyPath: boatSong.Array.data[1]
       value: 
-      objectReference: {fileID: 8300000, guid: b3cb9eb76c45094439e0f6b83982e523, type: 3}
+      objectReference: {fileID: 8300000, guid: 39239f8a9ac699646b51e96e0b6a7c47, type: 3}
     - target: {fileID: 4535750552693928030, guid: b1ce8ca3cfce89842a22dd327c4ad3aa,
         type: 3}
       propertyPath: boatSong.Array.data[2]
       value: 
-      objectReference: {fileID: 8300000, guid: 7aee41ddcc29a8848884fd6ed79b45c9, type: 3}
+      objectReference: {fileID: 8300000, guid: b3cb9eb76c45094439e0f6b83982e523, type: 3}
     - target: {fileID: 4535750552693928030, guid: b1ce8ca3cfce89842a22dd327c4ad3aa,
         type: 3}
       propertyPath: bossSong.Array.data[2]

@@ -137,8 +137,13 @@ public GameObject questPanel;
             npcs.Add(newNPC.GetComponent<NPCController>());
 
 
-            visualID = Random.Range(0, visualBoat.Length);
-            GetComponent<AudioSource>().clip = boatSong[visualID];
+           // visualID = Random.Range(0, visualBoat.Length);
+            GetComponent<AudioSource>().clip = boatSong[boatSongID];
+            boatSongID++;
+            if (boatSongID > 2)
+            {
+                boatSongID = 0;
+            }
             GetComponent<AudioSource>().clip = bossSong[BossCount];
             GetComponent<AudioSource>().Play();
             BossCount++;
@@ -158,6 +163,7 @@ public GameObject questPanel;
 
     }
 
+    public int boatSongID = 0;
     public int BossCount = 0;
 
     private int currentWave = 1;

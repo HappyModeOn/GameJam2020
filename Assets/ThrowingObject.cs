@@ -43,6 +43,7 @@ public class ThrowingObject : MonoBehaviour
                 {
                     waterVFX.transform.parent = null;
                     waterVFX.transform.position = transform.position;
+                    waterVFX.transform.rotation = new Quaternion();
                     waterVFX.SetActive(true);
                 }
             }
