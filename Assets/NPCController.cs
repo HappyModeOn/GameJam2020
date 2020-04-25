@@ -250,6 +250,9 @@ public class NPCController : MonoBehaviour
 
     }
 
+    float deathCoolDownBounce = 5;
+    float currentDeathCDBounce = 5;
+
     private void Death()
     {
         isDeath = true;
@@ -259,12 +262,13 @@ public class NPCController : MonoBehaviour
     }
     public void Bounce()
     {
+        currentDeathCDBounce = deathCoolDownBounce;
         GetComponent<AudioSource>().PlayOneShot(bwawawawSFX);
         Death();
         anim.SetTrigger("Impact");
         transform.parent = null;
        
-        rb.AddForce(new Vector3(Random.Range(300, 500), Random.Range(150, 350), 0));
+        rb.AddForce(new Vector3(Random.Range(300, 500), Random.Range(150, 200), 0));
      
     }
     // Update is called once per frame
@@ -306,6 +310,23 @@ public class NPCController : MonoBehaviour
                 GetComponent<AudioSource>().Play();
 
 
+            }
+            else
+            {
+                if (gameObject.layer == LayerMask.NameToLayer("Flyer"))
+                {
+                    if (currentDeathCDBounce > 0)
+                    {
+                        currentDeathCDBounce -= Time.deltaTime;
+
+                    }
+                    else
+                    {
+                         Bounce();
+                    }
+                }
+              
+              
             }
             if (transform.position.x < -15f)
             {
