@@ -154,6 +154,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87d29f04fc0ad434591e90954bf5fef5, type: 3}
+--- !u!1 &5352394456668879827 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 38222667303700834, guid: 87d29f04fc0ad434591e90954bf5fef5,
+    type: 3}
+  m_PrefabInstance: {fileID: 5386390050076750513}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7783738860833853638 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2793683636843586167, guid: 87d29f04fc0ad434591e90954bf5fef5,
@@ -324,6 +330,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6358367080873702970, guid: 2283b34fdd93da64492218ba7aa4c029,
         type: 3}
+      propertyPath: hitBox.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6358367080873702970, guid: 2283b34fdd93da64492218ba7aa4c029,
+        type: 3}
       propertyPath: isMelee
       value: 1
       objectReference: {fileID: 0}
@@ -352,6 +363,11 @@ PrefabInstance:
       propertyPath: speed
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 6358367080873702970, guid: 2283b34fdd93da64492218ba7aa4c029,
+        type: 3}
+      propertyPath: hitBox.Array.data[0]
+      value: 
+      objectReference: {fileID: 5352394456668879827}
     - target: {fileID: 6358367080873702981, guid: 2283b34fdd93da64492218ba7aa4c029,
         type: 3}
       propertyPath: m_Radius

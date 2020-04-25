@@ -334,6 +334,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6358367080873702970, guid: 2283b34fdd93da64492218ba7aa4c029,
         type: 3}
+      propertyPath: hitBox.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6358367080873702970, guid: 2283b34fdd93da64492218ba7aa4c029,
+        type: 3}
       propertyPath: isMelee
       value: 1
       objectReference: {fileID: 0}
@@ -367,6 +372,11 @@ PrefabInstance:
       propertyPath: danceID
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6358367080873702970, guid: 2283b34fdd93da64492218ba7aa4c029,
+        type: 3}
+      propertyPath: hitBox.Array.data[0]
+      value: 
+      objectReference: {fileID: 2862554014689360754}
     - target: {fileID: 6358367080873702981, guid: 2283b34fdd93da64492218ba7aa4c029,
         type: 3}
       propertyPath: m_Radius
