@@ -32,30 +32,33 @@ public class ThrowingObject : MonoBehaviour
 
     }
 
-
-    private void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        if (transform.position.y < 2)
+        if (other.name == "Water")
         {
             if (waterVFX != null)
             {
+
                 if (waterVFX.activeInHierarchy == false)
                 {
+                    waterVFX.transform.parent = null;
+                    waterVFX.transform.position = transform.position;
                     waterVFX.SetActive(true);
                 }
             }
         }
-    }
-
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (groundVFX != null)
+        else
         {
-            if (groundVFX.activeInHierarchy == false)
+            /*
+            if (groundVFX != null)
             {
-                groundVFX.SetActive(true);
+                if (groundVFX.activeInHierarchy == false)
+                {
+                    groundVFX.SetActive(true);
+                }
             }
+            */
         }
+       
     }
 }
