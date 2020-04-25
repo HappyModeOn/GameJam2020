@@ -65,7 +65,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundVFX: {fileID: 3200788508597415762}
   waterVFX: {fileID: 3318268795001522170}
-  damge: 5
+  damge: 1
   directionZ: -1
   minMaxX: {x: -50, y: 50}
   minMaxY: {x: 150, y: 250}
