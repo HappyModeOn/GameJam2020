@@ -23,6 +23,7 @@ public enum ThrowerType
 }
 public class NPCController : MonoBehaviour
 {
+    public AudioClip waterSplashSFX;
     public AudioClip bwawawawSFX;
     public AudioClip savingSFX;
     public AudioClip savedSFX;
@@ -39,7 +40,7 @@ public class NPCController : MonoBehaviour
     public SimplePooling sp;
 
     public int hp = 3;
-    public int currentHP = 3;
+    private int currentHP = 3;
 
     private Rigidbody rb;
 
@@ -61,6 +62,7 @@ public class NPCController : MonoBehaviour
     }
     void Start()
     {
+        currentHP = hp;
         currentFloating = transform.root.GetComponent<Floating>();
         SetColorCup();
         if (projectileType == ThrowerType.Beer)
@@ -292,6 +294,10 @@ public class NPCController : MonoBehaviour
             {
                 //rb.velocity = Vector3.zero;
                 anim.SetBool("OnWater", true);
+                GetComponent<AudioSource>().clip = waterSplashSFX;
+                GetComponent<AudioSource>().Play();
+
+
             }
             if (transform.position.x < -15f)
             {

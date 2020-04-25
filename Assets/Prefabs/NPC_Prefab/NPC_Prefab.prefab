@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25049a2b06384a943951ba49afbacf8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waterSplashSFX: {fileID: 8300000, guid: 9671a1d9594e8dc47a42dafa11bd7111, type: 3}
   bwawawawSFX: {fileID: 8300000, guid: f0d96b1c1c8679441a176ae636e8b94d, type: 3}
   savingSFX: {fileID: 8300000, guid: 7fa043d4322a48846aae20d754f527ec, type: 3}
   savedSFX: {fileID: 8300000, guid: 461f092a6eabddb43bdb4271c6b65945, type: 3}
@@ -115,7 +116,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0333241887aa18c43b6c85e1f682d80d, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -159,7 +160,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
