@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public enum ThrowerType
+{
+    Beer,
+    Speaker
+}
 public class NPCController : MonoBehaviour
 {
     int duty = 100;
@@ -13,6 +19,8 @@ public class NPCController : MonoBehaviour
     public float speed = 3;
     // Start is called before the first frame update
     public bool isMelee = false;
+    public ThrowerType projectileType;
+    public SimplePooling sp;
 
     public int hp = 3;
     public int currentHP = 3;
@@ -39,7 +47,11 @@ public class NPCController : MonoBehaviour
     {
         currentFloating = transform.root.GetComponent<Floating>();
         SetColorCup();
-
+        if (projectileType == ThrowerType.Beer)
+        {
+            sp = GameObject.Find("BeerPool").GetComponent<SimplePooling>();
+        }
+       
 
 
 
@@ -258,7 +270,7 @@ public class NPCController : MonoBehaviour
                                 hitBox.SetActive(true);
                             }
                         }
-                          
+
                     }
                     else
                     {
@@ -285,7 +297,7 @@ public class NPCController : MonoBehaviour
                                 hitBox.SetActive(true);
                             }
                         }
-                    }          
+                    }
                 }
                 else if (currentFloating.lenNumber == Floating.floatingPosition.Bottom)
                 {
@@ -312,6 +324,34 @@ public class NPCController : MonoBehaviour
                         }
                     }
                 }
+            }
+            else
+            {
+                if (currentAttackCD > 0)
+                {
+                    currentAttackCD -= Time.deltaTime;
+                }
+                else
+                {
+                    currentAttackCD = attackCD;
+                    anim.SetTrigger("Attack");
+                    GameObject trb = sp.Show(transform.position);
+                    if (currentFloating.lenNumber == Floating.floatingPosition.Top)
+                    {
+                        trb.GetComponent<ThrowingObject>().directionZ = -1;
+                      //  trb.AddForce(Random.Range(-300, 300), Random.Range(500, 1000), Random.Range(-150, -300));
+                    }
+                    else if (currentFloating.lenNumber == Floating.floatingPosition.Middle)
+                    {
+                        //trb.GetComponent<ThrowingObject>().directionZ = 0;
+                    }
+                    else if (currentFloating.lenNumber == Floating.floatingPosition.Bottom)
+                    {
+                        trb.GetComponent<ThrowingObject>().directionZ = 1;
+                    }
+                }
+             
+
             }
         }
         

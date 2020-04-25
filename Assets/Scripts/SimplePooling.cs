@@ -20,7 +20,7 @@ public class SimplePooling : MonoBehaviour {
         }
         poolID = 0;
     }
-    public void Show(Vector3 position)
+    public GameObject Show(Vector3 position)
     {
         
         pool[poolID].transform.position = position;
@@ -32,6 +32,8 @@ public class SimplePooling : MonoBehaviour {
         {
             poolID = 0;
         }
+
+        return pool[poolID];
     }
 
 }
