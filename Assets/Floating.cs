@@ -87,13 +87,6 @@ public GameObject questPanel;
             newNPC.GetComponent<NPCController>().isEnemy = false;
             npcs.Add(newNPC.GetComponent<NPCController>());
 
-            GameObject newNPC2 = npcG.AddMeleeNPC(transform.position);
-            //GameObject newNPC = npcG.AddNPC(transform.position, 1);
-            newNPC2.transform.localScale = Vector3.one;
-            newNPC2.transform.parent = transform;
-            newNPC2.GetComponent<NPCController>().isEnemy = false;
-            npcs.Add(newNPC2.GetComponent<NPCController>());
-
             GameObject newNPC1 = npcG.AddThrowerNPC(transform.position, 1);
             //GameObject newNPC = npcG.AddNPC(transform.position, 1);
             newNPC1.transform.localScale = Vector3.one;
@@ -118,10 +111,10 @@ public GameObject questPanel;
         isBreak = false;
         reachTarget = false;
         int numberOfNPC = 2;
-        numberOfNPC += currentWave % 2;
+        numberOfNPC += currentWave % 3;
         
         Debug.Log(currentWave + "/ mod 5 >>" + (currentWave %5) + "/ mod 3 >>" + (currentWave % 3));
-        if (currentWave % 5 == 0 && lenNumber == floatingPosition.Bottom)
+        if (currentWave % 2 == 0 && lenNumber == floatingPosition.Bottom)
         {
 
             GameObject newNPC = npcG.AddUniqueNPC(transform.position, BossCount);
