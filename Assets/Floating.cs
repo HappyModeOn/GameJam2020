@@ -105,28 +105,9 @@ public GameObject questPanel;
         //Gen NPC then start Move Right Again
         isBreak = false;
         reachTarget = false;
-        int numberOfNPC = 2;
-        numberOfNPC += currentWave % 3;
-        for (int i = 0; i < numberOfNPC; i++)
-        {
-            if (i % 3 == 0)
-            {
-                GameObject newNPC = npcG.AddMeleeNPC(transform.position);
-                //GameObject newNPC = npcG.AddNPC(transform.position, 1);
-                newNPC.transform.localScale = Vector3.one;
-                newNPC.transform.parent = transform;
-                npcs.Add(newNPC.GetComponent<NPCController>());
-            }
-            else
-            {
-                GameObject newNPC = npcG.AddThrowerNPC(transform.position);
-                //GameObject newNPC = npcG.AddNPC(transform.position, 1);
-                newNPC.transform.localScale = Vector3.one;
-                newNPC.transform.parent = transform;
-                npcs.Add(newNPC.GetComponent<NPCController>());
-            }
-           
-        }
+        int numberOfNPC = 3;
+        numberOfNPC += currentWave % 2;
+        
         Debug.Log(currentWave + "/ mod 5 >>" + (currentWave %5) + "/ mod 3 >>" + (currentWave % 3));
         if (currentWave % 5 == 0 && lenNumber == floatingPosition.Bottom)
         {
@@ -165,6 +146,27 @@ public GameObject questPanel;
         }
         else
         {
+            for (int i = 0; i < numberOfNPC; i++)
+            {
+                if (i % 3 == 0)
+                {
+                    GameObject newNPC = npcG.AddMeleeNPC(transform.position);
+                    //GameObject newNPC = npcG.AddNPC(transform.position, 1);
+                    newNPC.transform.localScale = Vector3.one;
+                    newNPC.transform.parent = transform;
+                    npcs.Add(newNPC.GetComponent<NPCController>());
+                }
+                else
+                {
+                    GameObject newNPC = npcG.AddThrowerNPC(transform.position);
+                    //GameObject newNPC = npcG.AddNPC(transform.position, 1);
+                    newNPC.transform.localScale = Vector3.one;
+                    newNPC.transform.parent = transform;
+                    npcs.Add(newNPC.GetComponent<NPCController>());
+                }
+
+            }
+
             visualID = Random.Range(0, visualBoat.Length);
            visualBoat[visualID].SetActive(true);
             GetComponent<AudioSource>().clip = boatSong[visualID];
@@ -192,7 +194,7 @@ public GameObject questPanel;
             if (isPlayerFloating)
             {
                 GetComponent<AudioSource>().Stop();
-                gameOverPanel.SetActive(false);
+                gameOverPanel.SetActive(true);
 
             }
             else

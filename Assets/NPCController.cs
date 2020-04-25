@@ -156,7 +156,7 @@ public class NPCController : MonoBehaviour
             //hack Must Delay
             transform.parent = other.transform.root;
             isEnemy = false;
-            currentHP = hp;
+            currentHP = hp/2;
             isDeath = false;
             currentFloating = transform.root.GetComponent<Floating>();
             
@@ -209,11 +209,11 @@ public class NPCController : MonoBehaviour
                 if (other.GetComponent<HeavyObject>() != null)
                 {
                     anim.SetTrigger("HeavyHurt");
-                    currentHP -= 3;
+                    currentHP -= 5;
                 }
                 else
                 {
-                    currentHP -= 1;
+                    currentHP -= 3;
                     anim.SetTrigger("Hurt");
                 }
             }
@@ -229,13 +229,13 @@ public class NPCController : MonoBehaviour
                 if (other.GetComponent<ThrowingObject>().damge > 1)
                 {
                     anim.SetTrigger("HeavyHurt");
-                    currentHP -= 3;
+                   
                 }
                 else
                 {
-                    currentHP -= 1;
                     anim.SetTrigger("Hurt");
                 }
+                currentHP -= other.GetComponent<ThrowingObject>().damge;
                 other.gameObject.SetActive(false);
             }
             
@@ -308,6 +308,11 @@ public class NPCController : MonoBehaviour
             }
             if (transform.position.x < -15f)
             {
+                Destroy(gameObject);
+            }
+            if (transform.position.y < -15f)
+            {
+                Death();
                 Destroy(gameObject);
             }
 

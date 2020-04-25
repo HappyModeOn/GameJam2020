@@ -336,6 +336,16 @@ PrefabInstance:
       propertyPath: mr
       value: 
       objectReference: {fileID: 6749688018330436046}
+    - target: {fileID: 6358367080873702981, guid: 2283b34fdd93da64492218ba7aa4c029,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6358367080873702981, guid: 2283b34fdd93da64492218ba7aa4c029,
+        type: 3}
+      propertyPath: m_Height
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6358367080873702982, guid: 2283b34fdd93da64492218ba7aa4c029,
         type: 3}
       propertyPath: m_Name
