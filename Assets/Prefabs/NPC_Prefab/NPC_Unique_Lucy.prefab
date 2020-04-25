@@ -62,7 +62,7 @@ MonoBehaviour:
   isMelee: 1
   projectileType: 0
   sp: {fileID: 0}
-  hp: 100
+  hp: 75
   hurtSFX:
   - {fileID: 8300000, guid: 0333241887aa18c43b6c85e1f682d80d, type: 3}
   - {fileID: 8300000, guid: 70aac760535f7be4aa3b97a44c5f70c7, type: 3}
@@ -71,7 +71,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 65e571f78beae3147ae074537cbbf08b, type: 3}
   knockbackPower: {x: 300, y: 300, z: 0}
   isDeath: 0
-  attackCD: 3
+  attackCD: 4
   hitBox: {fileID: 6358367082395080780}
 --- !u!136 &6358367080873702981
 CapsuleCollider:
@@ -211,7 +211,6 @@ GameObject:
   - component: {fileID: 6358367082395080771}
   - component: {fileID: 6358367082395080770}
   - component: {fileID: 7291693730646632934}
-  - component: {fileID: 631080360134797925}
   m_Layer: 0
   m_Name: HitBox
   m_TagString: Untagged
@@ -244,7 +243,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 20, y: 1, z: 15}
+  m_Size: {x: 20, y: 1, z: 10}
   m_Center: {x: 0, y: -0.5, z: 0}
 --- !u!114 &6358367082395080770
 MonoBehaviour:
@@ -276,18 +275,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &631080360134797925
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6358367082395080780}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f63709ae4085afc4b9d7fcc4e4321223, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2876657663936972649
 PrefabInstance:
   m_ObjectHideFlags: 0

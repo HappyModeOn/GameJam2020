@@ -210,7 +210,6 @@ GameObject:
   - component: {fileID: 6358367082395080781}
   - component: {fileID: 6358367082395080771}
   - component: {fileID: 6358367082395080770}
-  - component: {fileID: 1081127181488322896}
   m_Layer: 0
   m_Name: HitBox
   m_TagString: Untagged
@@ -259,18 +258,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifeTime: 1
   destroy: 0
---- !u!114 &1081127181488322896
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6358367082395080780}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f63709ae4085afc4b9d7fcc4e4321223, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &9064197058155171601
 PrefabInstance:
   m_ObjectHideFlags: 0
