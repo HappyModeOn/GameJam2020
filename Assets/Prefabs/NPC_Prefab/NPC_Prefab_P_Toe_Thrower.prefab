@@ -341,6 +341,11 @@ PrefabInstance:
       propertyPath: speed
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 6358367080873702970, guid: 2283b34fdd93da64492218ba7aa4c029,
+        type: 3}
+      propertyPath: danceID
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6358367080873702981, guid: 2283b34fdd93da64492218ba7aa4c029,
         type: 3}
       propertyPath: m_Radius
