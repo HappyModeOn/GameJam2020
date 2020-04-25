@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: fad502713432d2a4a9cdf774a9d1fbb6
+guid: 9a0914fc7706ddb4da3fd51b24bc909a
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable: []
@@ -37,7 +37,7 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
-    useSRGBMaterialColor: 1
+    useSRGBMaterialColor: 0
     sortHierarchyByName: 0
     importVisibility: 0
     importBlendShapes: 0
@@ -47,7 +47,7 @@ ModelImporter:
     generateSecondaryUV: 0
     useFileUnits: 1
     keepQuads: 0
-    weldVertices: 1
+    weldVertices: 0
     preserveHierarchy: 0
     skinWeightsMode: 0
     maxBonesPerVertex: 4
