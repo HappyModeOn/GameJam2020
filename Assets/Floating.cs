@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class Floating : MonoBehaviour
 {
+    public bool isBreak = false;
+    public bool reachTarget = false;
+
+
+
+
+    public NPCGenerator npcG;
     public bool isPlayerFloating = false;
     public Floating topFloating;
     public Floating botFloating;
-    public int hp = 10;
-    public int currentHP = 10;
+    private int currentHP = 10;
 
 
     public floatingPosition lenNumber;
@@ -16,11 +22,9 @@ public class Floating : MonoBehaviour
     public float speed = 3;
 
     public List<NPCController> npcs;
-    bool isBreak = false;
-    public float delayAfterBreak = 3;
-    // Start is called before the first frame update
+   
 
-    public bool reachTarget = false;
+    
 
     public void CheckHP()
     {
@@ -36,63 +40,99 @@ public class Floating : MonoBehaviour
         if (currentHP <= 0)
         {
             isBreak = true;
-            GetComponent<Rigidbody>().isKinematic = false;
-          //  GetComponent<Rigidbody>().AddForce(Random.Range(-700, 700), 700, 0);
-          //  GetComponent<Rigidbody>().useGravity = true;
+            reachTarget = false;
+
+            if (currentWave == 0)
+            {
+                botFloating.gameObject.SetActive(true);
+            }
+            currentWave += 1;
         }
     }
-    // Update is called once per frame
+
+
+    void PrepareNewFloating()
+    {
+        if (isPlayerFloating)
+        {
+            return;
+        }
+        //Gen NPC then start Move Right Again
+        isBreak = false;
+        reachTarget = false;
+        int numberOfNPC = 2;
+        numberOfNPC += currentWave % 2;
+        for (int i = 0; i < numberOfNPC; i++)
+        {
+            GameObject newNPC = npcG.AddNPC(transform.position, 0);
+            newNPC.transform.localScale = Vector3.one;
+            newNPC.transform.parent = transform;
+            npcs.Add(newNPC.GetComponent<NPCController>());
+        }
+    }
+
+    int currentWave = 0;
+    public void Start()
+    {
+        PrepareNewFloating();
+    }
     void Update()
     {
-        if (isPlayerFloating == false)// Hack
-        {
-            CheckHP();
-        }
-        
+
+
 
         if (isBreak)
         {
-            if (delayAfterBreak > 0)
+            if (transform.position.x > -30)
             {
-                delayAfterBreak -= Time.deltaTime;
+                transform.Translate(Vector3.left * speed * Time.deltaTime);
             }
             else
             {
-                gameObject.SetActive(false);
-            }
-             
-        }
-        if (isPlayerFloating)
-        {
-            if (topFloating.reachTarget)
-            {
-                reachTarget = true;
-            }
-            if (botFloating.reachTarget)
-            {
-                reachTarget = true;
+                PrepareNewFloating();
             }
         }
         else
         {
-            if (reachTarget == false)
+            if (isPlayerFloating == false)// Hack
             {
-                float dist = transform.position.x - PlayerFloating.position.x;
-                if (Mathf.Abs(dist) < 0.1f)
+                CheckHP();
+            }
+            if (isPlayerFloating)
+            {
+                if (topFloating.reachTarget)
                 {
                     reachTarget = true;
-                    transform.position = new Vector3(PlayerFloating.position.x, transform.position.y, transform.position.z);
                 }
-                else
+                if (botFloating.reachTarget)
                 {
-                    transform.Translate(Vector3.right * speed * Time.deltaTime);
+                    reachTarget = true;
+                }
+            }
+            else
+            {
+                if (reachTarget == false)
+                {
+                    float dist = transform.position.x - PlayerFloating.position.x;
+                    if (Mathf.Abs(dist) < 0.1f)
+                    {
+                        // _startPosition = transform.position;
+
+                        reachTarget = true;
+                        transform.position = new Vector3(PlayerFloating.position.x, transform.position.y, transform.position.z);
+
+                        //transform.position = _startPosition + new Vector3(Mathf.Sin(Time.time), transform.position.y, transform.position.z);
+                    }
+                    else
+                    {
+                        transform.Translate(Vector3.right * speed * Time.deltaTime);
+                    }
                 }
             }
         }
        
-        
-       
     }
+
 
     public enum floatingPosition
     {

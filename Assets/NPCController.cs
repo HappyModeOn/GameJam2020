@@ -86,6 +86,10 @@ public class NPCController : MonoBehaviour
             {
                 return;
             }
+            if (anim.GetBool("OnWater") == false)
+            {
+                return;
+            }
             //hack Must Delay
             transform.parent = other.transform.root;
             isEnemy = false;
@@ -158,7 +162,7 @@ public class NPCController : MonoBehaviour
         anim.SetTrigger("Impact");
         transform.parent = null;
         isDeath = true;
-        rb.AddForce(knockbackPower);
+        rb.AddForce(new Vector3(Random.Range(-500, 500), Random.Range(300, 700), Random.Range(-300, 300)));
         currentFloating.npcs.Remove(this);
         anim.SetBool("Death", true);
     }
