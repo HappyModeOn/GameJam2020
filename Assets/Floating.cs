@@ -184,7 +184,11 @@ public GameObject questPanel;
     private int currentWave = 1;
     public void Start()
     {
-        StartCoroutine(DelayPlayerBGM());
+        if (isPlayerFloating)
+        {
+            StartCoroutine(DelayPlayerBGM());
+        }
+       
         PrepareNewFloating();
     }
    public GameObject gameOverPanel;

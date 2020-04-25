@@ -264,6 +264,7 @@ public class NPCController : MonoBehaviour
     {
         currentDeathCDBounce = deathCoolDownBounce;
         GetComponent<AudioSource>().PlayOneShot(bwawawawSFX);
+        Camera.main.GetComponent<CameraShake>().shakeDuration = 0.1f;
         Death();
         anim.SetTrigger("Impact");
         transform.parent = null;
@@ -341,8 +342,12 @@ public class NPCController : MonoBehaviour
 
             return;
         }
+        if (transform.position.y < 1.5f)
+        {
+            Death();
+        }
 
-        if (currentFloating.isPlayerFloating)
+            if (currentFloating.isPlayerFloating)
         {
             if (currentFloating.topFloating.reachTarget == false && currentFloating.botFloating.reachTarget == false)
             {
@@ -474,7 +479,7 @@ public class NPCController : MonoBehaviour
                         }
                         else
                         {
-                            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, -1.6f);
+                            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 1.6f);
                             rb.velocity = Vector3.zero;
                             anim.SetInteger("DanceID", -1);
                             anim.SetBool("Move", false);
