@@ -22,7 +22,7 @@ public class ThrowingObject : MonoBehaviour
         {
             GetComponent<Rigidbody>().AddForce(Random.Range(minMaxX.x, minMaxX.y), Random.Range(minMaxY.x, minMaxY.y), Random.Range(-minMaxZ.x, -minMaxZ.y));
         }
-        else
+        else if (directionZ == 1)
         {
             GetComponent<Rigidbody>().AddForce(Random.Range(minMaxX.x, minMaxX.y), Random.Range(minMaxY.x, minMaxY.y), Random.Range(minMaxZ.x, minMaxZ.y));
 

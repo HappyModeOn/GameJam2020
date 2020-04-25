@@ -20,21 +20,19 @@ public class SimplePooling : MonoBehaviour {
         }
         poolID = 0;
     }
-    public GameObject Show(Vector3 position, string tag)
+    public void Show(Vector3 position, string tag, int direction)
     {
         pool[poolID].transform.position = position;
 
         pool[poolID].tag = tag;
         pool[poolID].SetActive(true);
-        
+        pool[poolID].GetComponent<ThrowingObject>().directionZ = direction;
         poolID++;
 
         if (poolID >= pool.Length)
         {
             poolID = 0;
         }
-
-        return pool[poolID];
     }
 
 }
