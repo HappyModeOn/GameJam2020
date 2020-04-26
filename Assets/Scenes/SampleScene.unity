@@ -952,6 +952,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 495330025551594419, guid: 53b0f2f0221c7dc4ba99c8679af9dc7b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -46.649902
+      objectReference: {fileID: 0}
     - target: {fileID: 2202155896563939959, guid: 53b0f2f0221c7dc4ba99c8679af9dc7b,
         type: 3}
       propertyPath: m_Name
@@ -1074,6 +1079,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53b0f2f0221c7dc4ba99c8679af9dc7b, type: 3}
+--- !u!114 &245120413 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8768859308838817115, guid: 53b0f2f0221c7dc4ba99c8679af9dc7b,
+    type: 3}
+  m_PrefabInstance: {fileID: 245120412}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &245120414 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2464141291906078790, guid: 53b0f2f0221c7dc4ba99c8679af9dc7b,
+    type: 3}
+  m_PrefabInstance: {fileID: 245120412}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &250302708
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4616,6 +4645,8 @@ MonoBehaviour:
   boatSong: []
   bossSong: []
   gameOverHiScoreText: {fileID: 582654598}
+  currentWaveText: {fileID: 245120414}
+  currentHPText: {fileID: 245120413}
   questPanel: {fileID: 99355813}
   BossCount: 0
   gameOverPanel: {fileID: 2034894043}

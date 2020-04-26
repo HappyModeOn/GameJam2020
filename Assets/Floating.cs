@@ -61,20 +61,22 @@ public class Floating : MonoBehaviour
         {
             int currentPlayWave = (topFloating.currentWave + botFloating.currentWave - 1);
             int bestPlayWave = PlayerPrefs.GetInt("Best", 0);
-
+            currentWaveText.text = "Wave(s) " + currentPlayWave + "  (" + bestPlayWave + ")" ;
+            currentHPText.text = currentHP.ToString();
             if (currentPlayWave > bestPlayWave)
             {
                 PlayerPrefs.SetInt("Best", currentPlayWave);
                 PlayerPrefs.Save();
             }
             gameOverHiScoreText.text = "Best  : " + bestPlayWave + " Wave(s)";
-            Debug.Log("Current Wave : " + (topFloating.currentWave + botFloating.currentWave - 1) + " / " + "Current HP : " + currentHP);
         }
 
     }
 
 
     public Text gameOverHiScoreText;
+    public Text currentWaveText;
+    public Text currentHPText;
 
     IEnumerator DelayPlayerBGM()
     {
