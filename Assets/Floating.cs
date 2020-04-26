@@ -141,7 +141,6 @@ public GameObject questPanel;
         int numberOfNPC = 2;
         numberOfNPC += currentWave % 3;
         
-        Debug.Log(currentWave + "/ mod 5 >>" + (currentWave %5) + "/ mod 3 >>" + (currentWave % 3));
         if (currentWave % 2 == 0 && lenNumber == floatingPosition.Bottom)
         {
 
