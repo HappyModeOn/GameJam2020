@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Floating : MonoBehaviour
 {
@@ -58,11 +59,22 @@ public class Floating : MonoBehaviour
 
         if (isPlayerFloating)
         {
+            int currentPlayWave = (topFloating.currentWave + botFloating.currentWave - 1);
+            int bestPlayWave = PlayerPrefs.GetInt("Best", 0);
+
+            if (currentPlayWave > bestPlayWave)
+            {
+                PlayerPrefs.SetInt("Best", currentPlayWave);
+                PlayerPrefs.Save();
+            }
+            gameOverHiScoreText.text = "Best  : " + bestPlayWave + " Wave(s)";
             Debug.Log("Current Wave : " + (topFloating.currentWave + botFloating.currentWave - 1) + " / " + "Current HP : " + currentHP);
         }
 
     }
 
+
+    public Text gameOverHiScoreText;
 
     IEnumerator DelayPlayerBGM()
     {
@@ -83,7 +95,7 @@ public class Floating : MonoBehaviour
 
     IEnumerator DelayBoatSound()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(7);
         GetComponent<AudioSource>().Play();
     }
 

@@ -3277,6 +3277,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifeTime: 0.25
   destroy: 0
+--- !u!114 &582654598 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5595071159351719567, guid: 53b0f2f0221c7dc4ba99c8679af9dc7b,
+    type: 3}
+  m_PrefabInstance: {fileID: 245120412}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &583799295
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4603,6 +4615,7 @@ MonoBehaviour:
   visualBoat: []
   boatSong: []
   bossSong: []
+  gameOverHiScoreText: {fileID: 582654598}
   questPanel: {fileID: 99355813}
   BossCount: 0
   gameOverPanel: {fileID: 2034894043}
