@@ -55,6 +55,12 @@ public class Floating : MonoBehaviour
             }
             currentWave += 1;
         }
+
+        if (isPlayerFloating)
+        {
+            Debug.Log("Current Wave : " + (topFloating.currentWave + botFloating.currentWave) " / " + "Current HP : " + currentHP);
+        }
+
     }
 
 

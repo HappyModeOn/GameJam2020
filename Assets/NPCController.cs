@@ -120,12 +120,10 @@ public class NPCController : MonoBehaviour
             if (ran > 50)
             {
 
-                Debug.Log("Got Invade on Top");
                 duty = DockingDirection.Top;
             }
             else
             {
-                Debug.Log("Got Invade on Bot");
                 duty = DockingDirection.Bot;
             }
         
@@ -134,18 +132,15 @@ public class NPCController : MonoBehaviour
         {
             if (currentFloating.topFloating.reachTarget)
             {
-                Debug.Log("Got Invade on Top");
                 duty = DockingDirection.Top;
             }
             else
             {
-                Debug.Log("Got Invade on Bot");
                 duty = DockingDirection.Bot;
             }
         }
         else
         {
-            Debug.Log("NoEnemy");
             duty = DockingDirection.None;
         }
             
