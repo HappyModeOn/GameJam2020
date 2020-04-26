@@ -962,16 +962,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 4170871548997315511, guid: 53b0f2f0221c7dc4ba99c8679af9dc7b,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 377250435}
-    - target: {fileID: 4170871548997315511, guid: 53b0f2f0221c7dc4ba99c8679af9dc7b,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: RestartGame
-      objectReference: {fileID: 0}
     - target: {fileID: 5292499048599585542, guid: 53b0f2f0221c7dc4ba99c8679af9dc7b,
         type: 3}
       propertyPath: m_LocalPosition.x
