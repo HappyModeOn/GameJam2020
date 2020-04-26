@@ -61,7 +61,7 @@ public class Floating : MonoBehaviour
         {
             int currentPlayWave = (topFloating.currentWave + botFloating.currentWave - 1);
             int bestPlayWave = PlayerPrefs.GetInt("Best", 0);
-            currentWaveText.text = "Wave(s) " + currentPlayWave + "  (" + bestPlayWave + ")" ;
+            currentWaveText.text = "Partied : " + currentPlayWave + "  Best : " + bestPlayWave;
             currentHPText.text = currentHP.ToString();
             if (currentPlayWave > bestPlayWave)
             {

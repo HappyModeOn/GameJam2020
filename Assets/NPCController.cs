@@ -166,7 +166,7 @@ public class NPCController : MonoBehaviour
             //hack Must Delay
             transform.parent = other.transform.root;
             isEnemy = false;
-            currentHP = hp/2;
+            currentHP = hp;
             isDeath = false;
             currentFloating = transform.root.GetComponent<Floating>();
             
