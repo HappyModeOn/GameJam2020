@@ -47,7 +47,7 @@ public class CharacterMovement : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         anim.GetComponent<Animator>();
 
-        meshRenderer.material.SetColor("_Color", Color.yellow);
+        meshRenderer.material.SetColor("_Color", Color.red);
 
     }
 
