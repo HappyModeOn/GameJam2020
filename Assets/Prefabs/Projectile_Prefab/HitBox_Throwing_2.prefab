@@ -67,7 +67,7 @@ MonoBehaviour:
   waterVFX: {fileID: 4765363752683781186}
   damge: 2
   directionZ: -1
-  minMaxX: {x: -50, y: 50}
+  minMaxX: {x: -100, y: 100}
   minMaxY: {x: 150, y: 250}
   minMaxZ: {x: 150, y: 200}
 --- !u!54 &956504335143006807
