@@ -58,7 +58,7 @@ public class Floating : MonoBehaviour
 
         if (isPlayerFloating)
         {
-            Debug.Log("Current Wave : " + (topFloating.currentWave + botFloating.currentWave) + " / " + "Current HP : " + currentHP);
+            Debug.Log("Current Wave : " + (topFloating.currentWave + botFloating.currentWave - 1) + " / " + "Current HP : " + currentHP);
         }
 
     }
@@ -79,7 +79,15 @@ public class Floating : MonoBehaviour
         yield return new WaitForSeconds(2);
         introPanel.SetActive(false);
     }
-   
+
+
+    IEnumerator DelayBoatSound()
+    {
+        yield return new WaitForSeconds(5);
+        GetComponent<AudioSource>().Play();
+    }
+
+
 public GameObject questPanel;
     void PrepareNewFloating()
     {
@@ -168,7 +176,7 @@ public GameObject questPanel;
             GetComponent<AudioSource>().clip = boatSong[visualID];
             
         }
-        GetComponent<AudioSource>().Play();
+        StartCoroutine(DelayBoatSound());
 
     }
     public int BossCount = 0;
