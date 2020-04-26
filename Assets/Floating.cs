@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Floating : MonoBehaviour
 {
@@ -58,11 +59,24 @@ public class Floating : MonoBehaviour
 
         if (isPlayerFloating)
         {
-            Debug.Log("Current Wave : " + (topFloating.currentWave + botFloating.currentWave) + " / " + "Current HP : " + currentHP);
+            int currentPlayWave = (topFloating.currentWave + botFloating.currentWave - 1);
+            int bestPlayWave = PlayerPrefs.GetInt("Best", 0);
+            currentWaveText.text = "Wave(s) " + currentPlayWave + "  (" + bestPlayWave + ")" ;
+            currentHPText.text = currentHP.ToString();
+            if (currentPlayWave > bestPlayWave)
+            {
+                PlayerPrefs.SetInt("Best", currentPlayWave);
+                PlayerPrefs.Save();
+            }
+            gameOverHiScoreText.text = "Best  : " + bestPlayWave + " Wave(s)";
         }
 
     }
 
+
+    public Text gameOverHiScoreText;
+    public Text currentWaveText;
+    public Text currentHPText;
 
     IEnumerator DelayPlayerBGM()
     {
@@ -79,7 +93,15 @@ public class Floating : MonoBehaviour
         yield return new WaitForSeconds(2);
         introPanel.SetActive(false);
     }
-   
+
+
+    IEnumerator DelayBoatSound()
+    {
+        yield return new WaitForSeconds(7);
+        GetComponent<AudioSource>().Play();
+    }
+
+
 public GameObject questPanel;
     void PrepareNewFloating()
     {
@@ -168,7 +190,7 @@ public GameObject questPanel;
             GetComponent<AudioSource>().clip = boatSong[visualID];
             
         }
-        GetComponent<AudioSource>().Play();
+        StartCoroutine(DelayBoatSound());
 
     }
     public int BossCount = 0;
