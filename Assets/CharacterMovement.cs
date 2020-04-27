@@ -33,7 +33,7 @@ public class CharacterMovement : MonoBehaviour
             {
                 anim.SetTrigger("HeavyHurt");
 
-              
+
             }
             currentHurtTime = hurtTime;
         }
@@ -41,6 +41,20 @@ public class CharacterMovement : MonoBehaviour
     public MeshRenderer meshRenderer;
     public float hurtTime = 3;
     private float currentHurtTime = 0;
+
+
+    public GameObject arrorToBoat;
+    public void SetNpcOnHand(NPCController nc)
+    {
+        arrorToBoat.SetActive(true);
+        npcOnHand = nc;
+    }
+
+    public void SetNPCRevive()
+    {
+        arrorToBoat.SetActive(false);
+        npcOnHand = null;
+    }
     public NPCController npcOnHand;
     void Start()
     {

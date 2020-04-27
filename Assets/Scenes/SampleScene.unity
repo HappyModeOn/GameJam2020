@@ -1812,6 +1812,7 @@ MonoBehaviour:
   hitbox: {fileID: 558249032}
   meshRenderer: {fileID: 743800524}
   hurtTime: 1
+  arrorToBoat: {fileID: 416286732}
   npcOnHand: {fileID: 0}
   saverTrigger: {fileID: 615622386}
 --- !u!65 &377250436
