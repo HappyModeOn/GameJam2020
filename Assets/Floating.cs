@@ -139,11 +139,31 @@ public GameObject questPanel;
         isBreak = false;
         reachTarget = false;
         int numberOfNPC = 2;
-        numberOfNPC += currentWave % 3;
+        numberOfNPC += currentWave;
         
         if (currentWave % 2 == 0 && lenNumber == floatingPosition.Bottom)
         {
 
+            for (int i = 0; i < numberOfNPC; i++)
+            {
+                if (BossCount == 2)
+                {
+                    GameObject newNPC1 = npcG.AddMeleeNPC(transform.position);
+                    //GameObject newNPC = npcG.AddNPC(transform.position, 1);
+                    newNPC1.transform.localScale = Vector3.one;
+                    newNPC1.transform.parent = transform;
+                    npcs.Add(newNPC1.GetComponent<NPCController>());
+                }
+                else
+                {
+                    GameObject newNPC2 = npcG.AddThrowerNPC(transform.position);
+                    //GameObject newNPC = npcG.AddNPC(transform.position, 1);
+                    newNPC2.transform.localScale = Vector3.one;
+                    newNPC2.transform.parent = transform;
+                    npcs.Add(newNPC2.GetComponent<NPCController>());
+                }
+
+            }
             GameObject newNPC = npcG.AddUniqueNPC(transform.position, BossCount);
             //GameObject newNPC = npcG.AddNPC(transform.position, 1);
             newNPC.transform.localScale = Vector3.one;

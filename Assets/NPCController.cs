@@ -166,7 +166,7 @@ public class NPCController : MonoBehaviour
             //hack Must Delay
             transform.parent = other.transform.root;
             isEnemy = false;
-            currentHP = hp;
+            currentHP = hp/2;
             isDeath = false;
             currentFloating = transform.root.GetComponent<Floating>();
             
@@ -174,7 +174,7 @@ public class NPCController : MonoBehaviour
             {
                 currentFloating.npcs.Add(this);
             }
-            GameObject.Find("Player").GetComponent<CharacterMovement>().npcOnHand = null;
+            GameObject.Find("Player").GetComponent<CharacterMovement>().SetNPCRevive();
             
             SetColorCup();
             ///hack careful for multiplayer
@@ -201,7 +201,7 @@ public class NPCController : MonoBehaviour
                 GetComponent<AudioSource>().PlayOneShot(savingSFX);
                 anim.SetBool("Rescue", true);
                 Debug.Log("Got Save");
-                other.transform.root.gameObject.GetComponent<CharacterMovement>().npcOnHand = this;
+                other.transform.root.gameObject.GetComponent<CharacterMovement>().SetNpcOnHand(this);
                 transform.parent = other.transform.root;
                 GetComponent<Rigidbody>().isKinematic = true;
                 transform.localPosition = Vector3.zero;
